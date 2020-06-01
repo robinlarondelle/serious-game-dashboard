@@ -37,6 +37,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.11.1",
         "@typescript-eslint/eslint-plugin": "^3.0.2",
+        "bootstrap4-card-tables": "^1.2.1",
         "codelyzer": "^5.1.2",
         "eslint": "^7.1.0",
         "eslint-config-prettier": "^6.11.0",
