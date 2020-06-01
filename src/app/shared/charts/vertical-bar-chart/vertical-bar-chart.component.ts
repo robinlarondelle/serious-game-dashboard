@@ -11,6 +11,14 @@ export class VerticalBarChartComponent implements OnInit {
     @Input() showLegend = false;
     @Input() legendOnBottom = false;
     @Input() noCard = false;
+    @Input() gridLines = true;
+    @Input() xAxis: string;
+    @Input() yAxis: string;
+    @Input() showXAxis = false;
+    @Input() showYAxis = true;
+    @Input() showXLabel = false;
+    @Input() showYLabel = false;
+
     constructor() {}
     ngOnInit() {}
 }

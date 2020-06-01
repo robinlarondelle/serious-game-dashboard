@@ -11,7 +11,8 @@
     </div>
     <div class="row mb-4">
         <div class="col">
-            <app-vertical-bar-chart [data]="testData" [height]="400" [showLegend]="true" [legendOnBottom]="true">
+            <app-vertical-bar-chart [data]="testData" [height]="400" [showLegend]="true" [legendOnBottom]="true"
+                [xAxis]="'Countries'" [yAxis]="'Population'">
             </app-vertical-bar-chart>
         </div>
         <div class="col">
