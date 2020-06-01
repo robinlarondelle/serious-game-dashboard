@@ -1,0 +1,25 @@
+.plus {
+    font-size: 17px;
+}
+
+.nav-item {
+    border: 0px solid #343a40;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    .nav-link {
+        .mdi {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        &.active {
+            border-radius: 10px;
+            background-color: #e5f2ff;
+        }
+    }
+}
+
+.nav-item:hover {
+    border-radius: 10px;
+    background-color: #ffffff;
+}

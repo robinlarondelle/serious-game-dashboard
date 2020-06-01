@@ -6,23 +6,23 @@ export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
         path: "app",
-        component: BaseComponent,
         data: { title: "title" },
         children: [
             {
                 path: "",
                 redirectTo: "overview",
-                pathMatch: "full"
-            }, {
+                pathMatch: "full",
+            },
+            {
                 path: "overview",
                 component: OverviewComponent,
             },
-        ]
+        ],
     },
     {
         path: "**",
         redirectTo: "app/overview",
-    }
+    },
 ];
 
 export const RouteComponents = [
@@ -33,6 +33,5 @@ export const RouteComponents = [
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {
     enableTracing: false,
-    paramsInheritanceStrategy: "always"
+    paramsInheritanceStrategy: "always",
 });
-

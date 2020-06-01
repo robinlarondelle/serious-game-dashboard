@@ -6,9 +6,10 @@ import {
     BaseComponent,
     RouteDefinitions,
 } from "./routes/index";
+import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 
 @NgModule({
-    declarations: [...RouteComponents],
+    declarations: [...RouteComponents, SidebarComponent],
     imports: [BrowserModule, NgbModule, RouteDefinitions],
     providers: [],
     bootstrap: [BaseComponent],
