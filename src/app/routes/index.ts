@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { BaseComponent } from "./base/base.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { DivisionOverviewComponent } from "./management/division/division-overview/division-overview.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -16,6 +17,15 @@ const appRoutes: Routes = [
             {
                 path: "overview",
                 component: OverviewComponent,
+            },
+            {
+                path: "management",
+                children: [
+                    {
+                        path: "divisions",
+                        component: DivisionOverviewComponent,
+                    },
+                ],
             },
         ],
     },

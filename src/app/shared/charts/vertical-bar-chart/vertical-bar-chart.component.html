@@ -1,0 +1,6 @@
+<div [class.dumb-chart-card]="!noCard" [style.height.px]="height">
+    <div class="chart-wrapper" [style.height.px]="legendOnBottom? height - 90 : height - 20">
+        <ngx-charts-bar-vertical [results]="data" [legend]="showLegend"
+            [legendPosition]="legendOnBottom ? 'below' : 'right'"></ngx-charts-bar-vertical>
+    </div>
+</div>
