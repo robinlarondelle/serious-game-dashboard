@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: "app-vertical-bar-chart",
     templateUrl: "./vertical-bar-chart.component.html",
     styleUrls: ["./vertical-bar-chart.component.css"],
 })
-export class VerticalBarChartComponent implements OnInit {
+export class VerticalBarChartComponent {
     @Input() data: any[];
     @Input() height: number;
     @Input() showLegend = false;
@@ -19,6 +20,7 @@ export class VerticalBarChartComponent implements OnInit {
     @Input() showXLabel = false;
     @Input() showYLabel = false;
 
-    constructor() {}
-    ngOnInit() {}
+    constructor() {
+        // Stub
+    }
 }

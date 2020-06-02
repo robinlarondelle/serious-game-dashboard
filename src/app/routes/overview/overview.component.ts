@@ -6,7 +6,9 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./overview.component.scss"],
 })
 export class OverviewComponent implements OnInit {
-    constructor() {}
+    constructor() {
+        // Stub
+    }
     testData = [
         {
             name: "Germany",
@@ -52,5 +54,7 @@ export class OverviewComponent implements OnInit {
         },
     ];
 
-    ngOnInit() {}
+    ngOnInit(): void {
+        // Stub
+    }
 }
