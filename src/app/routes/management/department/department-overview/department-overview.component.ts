@@ -16,7 +16,7 @@ export class DepartmentOverviewComponent {
     public newDepartment(): void {
         const modal: NgbModalRef = this.modalService.open(
             DepartmentNewComponent,
-            { size: "lg", centered: true, backdrop: "static" }
+            { size: "lg", centered: true, backdrop: "static", keyboard: false }
         );
         modal.componentInstance.modal = modal;
     }

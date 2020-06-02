@@ -11,6 +11,7 @@ import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { VerticalBarChartComponent } from "./shared/charts/vertical-bar-chart/vertical-bar-chart.component";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { DepartmentNewComponent } from "./routes/management/department/department-new/department-new.component";
+import { QuestionNewComponent } from "./routes/management/question/question-overview/question-new/question-new.component";
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
@@ -29,6 +30,6 @@ import { FormsModule } from "@angular/forms";
     ],
     providers: [],
     bootstrap: [BaseComponent],
-    entryComponents: [DepartmentNewComponent],
+    entryComponents: [DepartmentNewComponent, QuestionNewComponent],
 })
 export class AppModule {}

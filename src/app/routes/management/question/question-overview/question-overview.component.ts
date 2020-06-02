@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { QuestionNewComponent } from "./question-new/question-new.component";
 
 @Component({
     selector: "app-question-overview",
@@ -7,15 +9,25 @@ import { Component, OnInit } from "@angular/core";
 })
 export class QuestionOverviewComponent implements OnInit {
     public reloadingQuestions = false;
-    constructor() {}
+    constructor(private modalService: NgbModal) {}
 
     ngOnInit() {}
 
-    public reloadQuestions(): void {
-        // Stub
+    public newQuestion(): void {
+        const modal: NgbModalRef = this.modalService.open(
+            QuestionNewComponent,
+            {
+                size: "xl",
+                centered: true,
+                backdrop: "static",
+                keyboard: false,
+                scrollable: true,
+            }
+        );
+        modal.componentInstance.modal = modal;
     }
 
-    public newQuestion(): void {
+    public reloadQuestions(): void {
         // Stub
     }
 }

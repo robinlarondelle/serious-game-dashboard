@@ -5,6 +5,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { DepartmentOverviewComponent } from "./management/department/department-overview/department-overview.component";
 import { DepartmentNewComponent } from "./management/department/department-new/department-new.component";
 import { QuestionOverviewComponent } from "./management/question/question-overview/question-overview.component";
+import { QuestionNewComponent } from "./management/question/question-overview/question-new/question-new.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -48,6 +49,7 @@ export const RouteComponents = [
     DepartmentOverviewComponent,
     DepartmentNewComponent,
     QuestionOverviewComponent,
+    QuestionNewComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {
