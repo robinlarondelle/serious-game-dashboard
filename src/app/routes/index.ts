@@ -4,6 +4,7 @@ import { OverviewComponent } from "./overview/overview.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { DepartmentOverviewComponent } from "./management/department/department-overview/department-overview.component";
 import { DepartmentNewComponent } from "./management/department/department-new/department-new.component";
+import { QuestionOverviewComponent } from "./management/question/question-overview/question-overview.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
                         path: "departments",
                         component: DepartmentOverviewComponent,
                     },
+                    {
+                        path: "questions",
+                        component: QuestionOverviewComponent,
+                    },
                 ],
             },
         ],
@@ -42,6 +47,7 @@ export const RouteComponents = [
     NotFoundComponent,
     DepartmentOverviewComponent,
     DepartmentNewComponent,
+    QuestionOverviewComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {

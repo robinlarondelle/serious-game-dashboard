@@ -19,6 +19,7 @@ export class DepartmentNewComponent implements OnInit {
     }
 
     public addDepartment(): void {
+        this.department.name = this.department.name.trim();
         if (this.department.name.length >= this.departmentNameLength) {
             this.errorMessage = undefined;
             // TODO: Send to api, wait for response

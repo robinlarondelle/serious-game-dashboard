@@ -10,7 +10,9 @@
             <div class="col">
                 <p>Enter the Department name below and click 'Add' to submit it. It might take some time for the game to
                     process the new Department.</p>
-                <pre>{{department | json}}</pre>
+                <ngb-alert [type]="'info'" [dismissible]="false">Info: Please ensure that the department name is unique
+                    so it doesn't confuse
+                    the players.</ngb-alert>
             </div>
         </div>
         <div class="row">

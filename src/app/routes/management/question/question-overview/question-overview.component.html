@@ -1,14 +1,14 @@
 <div>
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Departments</h2>
+        <h2>Questions</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button type="button" class="btn btn btn-outline-primary" (click)="newDepartment()"><span
+                <button type="button" class="btn btn btn-outline-primary" (click)="newQuestion()"><span
                         class="mdi mdi-plus"></span>
-                    Add</button>
-                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadDepartments()"><span
-                        class="mdi mdi-reload" [class.mdi-spin]="reloadingDepartments"></span>
+                    Add Question</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadQuestions()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingQuestions"></span>
                     Reload</button>
             </div>
         </div>
@@ -18,9 +18,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-text">
-                        <p>To be able to play the game, a player needs to select their corresponding Department from a
-                            list of options in the game. The different departments can be setup here. To add a
-                            department click the 'Add' button above.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit, natus enim obcaecati
+                            nemo,
+                            repudiandae officia dolores, deleniti ad iste eveniet voluptate? Perspiciatis enim nihil
+                            ducimus
+                            nobis dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil ducimus
+                            dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil</p>
                     </div>
                 </div>
             </div>
@@ -30,22 +40,24 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    All Departments
+                    All Questions
                 </div>
                 <table class="card-table table">
                     <thead>
                         <tr class="d-flex">
-                            <th class="col-4" scope="col">Department Name</th>
-                            <th class="col-2" scope="col">Amount of players</th>
+                            <th class="col-1" scope="col">Position</th>
+                            <th class="col-5" scope="col">Question</th>
+                            <th class="col-2" scope="col">Times answered</th>
                             <th class="col-2" scope="col">Average score</th>
-                            <th class="col-2" scope="col">Handle</th>
                             <th class="col-2" scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="d-flex">
-                            <td class="col-4">Mark</td>
-                            <td class="col-2">Otto</td>
+                            <td class="col-1">
+                                <span class="badge badge-primary p-2">Position 1</span>
+                            </td>
+                            <td class="col-5">Otto</td>
                             <td class="col-2">@mdo</td>
                             <td class="col-2">@mdo</td>
                             <td class="col-2">
