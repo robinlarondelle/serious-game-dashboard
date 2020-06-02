@@ -4,8 +4,12 @@
         <h2>Departments</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button type="button" class="btn btn btn-outline-primary">Add</button>
-                <button type="button" class="btn btn btn-outline-secondary">Reload</button>
+                <button type="button" class="btn btn btn-outline-primary" (click)="newDepartment()"><span
+                        class="mdi mdi-plus"></span>
+                    Add</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadDepartments()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingDepartments"></span>
+                    Reload</button>
             </div>
         </div>
     </div>
@@ -36,7 +40,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Table in a card
+                    All Departments
                 </div>
                 <table class="card-table table">
                     <thead>
