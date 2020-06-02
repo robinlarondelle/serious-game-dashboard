@@ -10,6 +10,8 @@ import {
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { VerticalBarChartComponent } from "./shared/charts/vertical-bar-chart/vertical-bar-chart.component";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { DepartmentNewComponent } from "./routes/management/department/department-new/department-new.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -23,8 +25,10 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
         RouteDefinitions,
         NgxChartsModule,
         BrowserAnimationsModule,
+        FormsModule,
     ],
     providers: [],
     bootstrap: [BaseComponent],
+    entryComponents: [DepartmentNewComponent],
 })
 export class AppModule {}

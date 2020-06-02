@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { DepartmentNewComponent } from "../department-new/department-new.component";
 
 @Component({
     selector: "app-department-overview",
@@ -7,12 +9,16 @@ import { Component } from "@angular/core";
 })
 export class DepartmentOverviewComponent {
     public reloadingDepartments = false;
-    constructor() {
+    constructor(private modalService: NgbModal) {
         // Stub
     }
 
     public newDepartment(): void {
-        console.log("Click");
+        const modal: NgbModalRef = this.modalService.open(
+            DepartmentNewComponent,
+            { size: "lg", centered: true, backdrop: "static" }
+        );
+        modal.componentInstance.modal = modal;
     }
 
     public reloadDepartments(): void {

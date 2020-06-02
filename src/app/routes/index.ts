@@ -3,6 +3,7 @@ import { BaseComponent } from "./base/base.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { DepartmentOverviewComponent } from "./management/department/department-overview/department-overview.component";
+import { DepartmentNewComponent } from "./management/department/department-new/department-new.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -40,6 +41,7 @@ export const RouteComponents = [
     OverviewComponent,
     NotFoundComponent,
     DepartmentOverviewComponent,
+    DepartmentNewComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {
