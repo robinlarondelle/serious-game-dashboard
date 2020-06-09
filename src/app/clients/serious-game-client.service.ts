@@ -14,6 +14,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { GameRequest } from "../routes/management/game/game-new/game-new.component";
 
 @Injectable()
 
@@ -58,12 +59,42 @@ export class SeriousGameService {
             .pipe(map((r: HttpResponse<Game[]>) => r.body));
     }
 
+    /**
+     * Get game by game pin
+     * @param pin: GamePin
+     * @returns An observable on the XHR request
+     */
     public getGameByPin(pin: number): Observable<Game> {
         return this.http
             .get(`${SeriousGameService.Url}/game/${pin}`, {
                 observe: "response",
             })
             .pipe(map((r: HttpResponse<Game>) => r.body));
+    }
+
+    /**
+     * Post a new game
+     * @param game: Game object
+     * @returns An observable on the XHR request
+     */
+    public postGame(game: GameRequest): Observable<Game> {
+        return this.http
+            .post(`${SeriousGameService.Url}/game`, game, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Game>) => r.body));
+    }
+
+    /**
+     * Get all categories
+     * @returns An observable on the XHR request
+     */
+    public getAllCategories(): Observable<Category[]> {
+        return this.http
+            .get(`${SeriousGameService.Url}/category`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Category[]>) => r.body));
     }
 
     // /**
@@ -179,4 +210,9 @@ export interface Answer {
     _id?: string;
     answer?: string;
     deltaScore?: number;
+}
+
+export interface Category {
+    _id?: string;
+    name?: string;
 }

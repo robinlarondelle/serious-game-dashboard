@@ -5,32 +5,113 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body scroll">
         <div class="row">
             <div class="col">
-                <p>Enter the Game description below and click 'Add' to submit it. <br>
+                <!-- <p>Enter the Game description below and click 'Add' to submit it. <br>
                     It might take some time for the game
                     engine
                     to process the new Game.</p>
                 <ngb-alert [type]="'info'" [dismissible]="false">Info: Please ensure that the game description is unique
-                    so it doesn't cause confusion.</ngb-alert>
+                    so it doesn't cause confusion.</ngb-alert> -->
                 <pre>{{game | json}}</pre>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label for="gameDescription">Game Description</label>
-                    <input class="form-control" [class.is-invalid]="errorMessage" ngbAutofocus ngDefaultControl
-                        id="gameDescription" type="text" placeholder="Game for Legal Team"
-                        [(ngModel)]="game.description">
-                    <div *ngIf="errorMessage" class="invalid-feedback" [innerText]="errorMessage"></div>
+
+                <div class="game card mb-3">
+                    <div class="card-header">
+                        <span>Game Details</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="gameDescription">Game Description</label>
+                                    <input class="form-control" [class.is-invalid]="errorMessage" ngbAutofocus
+                                        ngDefaultControl id="gameDescription" type="text"
+                                        placeholder="Game for Legal Team" [(ngModel)]="game.description">
+                                    <div *ngIf="errorMessage" class="invalid-feedback" [innerText]="errorMessage"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3 ml-5" *ngFor="let question of game.questions; index as iq">
+                    <div class="card-header">
+                        <span>Question {{iq + 1}}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="questionText">Question Text</label>
+                            <input class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
+                                placeholder="What is the answer to life the universe and everthing?"
+                                [(ngModel)]="question.question">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="category">Question Category</label>
+                                    <select class="form-control" id="category" [(ngModel)]="question.category">
+                                        <option *ngFor="let category of categoryResponse$ | async"
+                                            [innerText]="category.name" [value]="category._id">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="questionLevel">Level</label>
+                                    <input class="form-control" ngbAutofocus ngDefaultControl id="questionLevel"
+                                        type="text" placeholder="1 / {{amountOfQuestions}}"
+                                        [(ngModel)]="question.level">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Answers</p>
+                                </div>
+                            </div>
+                            <div class="row mb-2" *ngFor="let answer of question.answers; index as ia">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <label for="answerText">Answer {{ia + 1}}</label>
+                                        <input class="form-control" ngbAutofocus ngDefaultControl id="answerText"
+                                            type="text" placeholder="42, obviously" [(ngModel)]="answer.answer">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="answerScore">Score</label>
+                                        <input class="form-control" ngbAutofocus ngDefaultControl id="answerScore"
+                                            type="number" placeholder="-100 / 100" [(ngModel)]="answer.deltaScore">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="addDepartment()">Add</button>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+    <div>
+        <button type="button" class="btn btn-success" (click)="addQuestion()">Add Question
+            <span class="badge badge-pill badge-light">{{game.questions.length}} /
+                {{amountOfQuestions}}</span></button>
+    </div>
+    <div>
+        <span *ngIf="validRequest === false" class="badge badge-danger mr-3 p-1">This request is not valid yet. Please
+            fill in
+            all fields.</span>
+        <button type="button" class="btn btn-primary mr-2" (click)="postGame()">Add Game</button>
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
     </div>
 </div>

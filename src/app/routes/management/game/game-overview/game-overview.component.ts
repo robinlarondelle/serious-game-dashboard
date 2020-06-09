@@ -6,7 +6,7 @@ import {
     Game,
 } from "src/app/clients/serious-game-client.service";
 import { Observable, BehaviorSubject, combineLatest } from "rxjs";
-import { tap, switchMap, combineAll, map } from "rxjs/operators";
+import { tap, switchMap, map } from "rxjs/operators";
 
 @Component({
     selector: "app-game-overview",
@@ -48,7 +48,7 @@ export class GameOverviewComponent {
 
     public newGame(): void {
         const modal: NgbModalRef = this.modalService.open(GameNewComponent, {
-            size: "lg",
+            size: "xl",
             centered: true,
             backdrop: "static",
             keyboard: false,
