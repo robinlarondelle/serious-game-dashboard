@@ -1,10 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import {
-    SeriousGameService,
-    Category,
-} from "src/app/clients/serious-game-client.service";
-import { Observable } from "rxjs";
+import { SeriousGameService } from "src/app/clients/serious-game-client.service";
 
 @Component({
     selector: "app-category-new",

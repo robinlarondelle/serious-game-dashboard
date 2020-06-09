@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MomentModule } from "ngx-moment";
 import { GameNewComponent } from "./routes/management/game/game-new/game-new.component";
 import { CategoryNewComponent } from "./routes/management/category/category-new/category-new.component";
+import { CategoryEditComponent } from "./routes/management/category/category-edit/category-edit.component";
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { CategoryNewComponent } from "./routes/management/category/category-new/
         GameNewComponent,
         QuestionNewComponent,
         CategoryNewComponent,
+        CategoryEditComponent,
     ],
 })
 export class AppModule {}

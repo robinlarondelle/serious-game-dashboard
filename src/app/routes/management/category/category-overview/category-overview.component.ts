@@ -8,6 +8,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { tap, switchMap, map, shareReplay } from "rxjs/operators";
 import { GameNewComponent } from "../../game/game-new/game-new.component";
 import { CategoryNewComponent } from "../category-new/category-new.component";
+import { CategoryEditComponent } from "../category-edit/category-edit.component";
 
 @Component({
     selector: "app-category-overview",
@@ -63,5 +64,21 @@ export class CategoryOverviewComponent {
 
     public reloadCategories(): void {
         this.reload$.next(this.reload$.getValue() + 1);
+    }
+
+    public editCategory(category: Category): void {
+        console.log(category);
+
+        const editModal: NgbModalRef = this.modalService.open(
+            CategoryEditComponent,
+            {
+                size: "lg",
+                centered: true,
+                backdrop: "static",
+                keyboard: false,
+            }
+        );
+        editModal.componentInstance.category = category;
+        editModal.componentInstance.modal = editModal;
     }
 }

@@ -8,6 +8,7 @@ import { GameOverviewComponent } from "./management/game/game-overview/game-over
 import { GameNewComponent } from "./management/game/game-new/game-new.component";
 import { CategoryOverviewComponent } from "./management/category/category-overview/category-overview.component";
 import { CategoryNewComponent } from "./management/category/category-new/category-new.component";
+import { CategoryEditComponent } from "./management/category/category-edit/category-edit.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -58,6 +59,7 @@ export const RouteComponents = [
     QuestionNewComponent,
     CategoryOverviewComponent,
     CategoryNewComponent,
+    CategoryEditComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {

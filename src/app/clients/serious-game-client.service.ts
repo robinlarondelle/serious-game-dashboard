@@ -100,7 +100,7 @@ export class SeriousGameService {
 
     /**
      * Post a new category
-     * @param game: Category object
+     * @param category: Category object
      * @returns An observable on the XHR request
      */
     public postCategory(category: CategoryRequest): Observable<Category> {
@@ -108,6 +108,23 @@ export class SeriousGameService {
             .post(`${SeriousGameService.Url}/category`, category, {
                 observe: "response",
             })
+            .pipe(map((r: HttpResponse<Category>) => r.body));
+    }
+
+    /**
+     * Edit a category
+     * @param category: Category object
+     * @returns An observable on the XHR request
+     */
+    public editCategory(category: Category): Observable<Category> {
+        return this.http
+            .put(
+                `${SeriousGameService.Url}/category/${category._id}`,
+                category,
+                {
+                    observe: "response",
+                }
+            )
             .pipe(map((r: HttpResponse<Category>) => r.body));
     }
 

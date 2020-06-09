@@ -48,8 +48,8 @@
                                 <td class="col-9" [innerText]="category.name || 'Unknown Name'"></td>
                                 <td class="col-1">
                                     <div class="btn-group btn-group-sm d-flex" role="group">
-                                        <button type="button" class="btn btn-info w-100"><span
-                                                class="mdi mdi-pencil"></span>
+                                        <button type="button" class="btn btn-info w-100"
+                                            (click)="editCategory(category)"><span class="mdi mdi-pencil"></span>
                                             Edit</button>
                                     </div>
                                 </td>
