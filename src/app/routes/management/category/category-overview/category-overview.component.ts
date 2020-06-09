@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, combineLatest } from "rxjs";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { tap, switchMap, map, shareReplay } from "rxjs/operators";
 import { GameNewComponent } from "../../game/game-new/game-new.component";
+import { CategoryNewComponent } from "../category-new/category-new.component";
 
 @Component({
     selector: "app-category-overview",
@@ -48,12 +49,15 @@ export class CategoryOverviewComponent {
     }
 
     public newCategory(): void {
-        const modal: NgbModalRef = this.modalService.open(GameNewComponent, {
-            size: "xl",
-            centered: true,
-            backdrop: "static",
-            keyboard: false,
-        });
+        const modal: NgbModalRef = this.modalService.open(
+            CategoryNewComponent,
+            {
+                size: "xl",
+                centered: true,
+                backdrop: "static",
+                keyboard: false,
+            }
+        );
         modal.componentInstance.modal = modal;
     }
 

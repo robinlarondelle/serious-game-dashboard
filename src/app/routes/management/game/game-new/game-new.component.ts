@@ -12,13 +12,13 @@ import { Observable } from "rxjs";
     templateUrl: "./game-new.component.html",
     styleUrls: ["./game-new.component.scss"],
 })
-export class GameNewComponent implements OnInit {
+export class GameNewComponent {
     @Input() modal: NgbModalRef;
     public game: GameRequest;
     public errorMessage: string = undefined;
 
     // Validation
-    public amountOfQuestions = 3;
+    public amountOfQuestions = 15;
     public amountOfAnswersPerQuestion = 4;
     public gameDescriptionLength = 5;
     public minDeltaScore = -100;
@@ -104,7 +104,6 @@ export class GameNewComponent implements OnInit {
             this.errorMessage = `Game description is not valid. Description must be longer or same length as ${this.gameDescriptionLength}. Found ${this.game.description.length} `;
         }
     }
-    ngOnInit() {}
 }
 
 export interface GameRequest {

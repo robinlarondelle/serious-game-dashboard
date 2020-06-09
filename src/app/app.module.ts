@@ -16,6 +16,7 @@ import { SeriousGameService } from "./clients/serious-game-client.service";
 import { HttpClientModule } from "@angular/common/http";
 import { MomentModule } from "ngx-moment";
 import { GameNewComponent } from "./routes/management/game/game-new/game-new.component";
+import { CategoryNewComponent } from "./routes/management/category/category-new/category-new.component";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,10 @@ import { GameNewComponent } from "./routes/management/game/game-new/game-new.com
     ],
     providers: [SeriousGameService],
     bootstrap: [BaseComponent],
-    entryComponents: [GameNewComponent, QuestionNewComponent],
+    entryComponents: [
+        GameNewComponent,
+        QuestionNewComponent,
+        CategoryNewComponent,
+    ],
 })
 export class AppModule {}
