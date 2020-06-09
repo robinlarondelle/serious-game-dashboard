@@ -1,3 +1,71 @@
-<p>
-  category-overview works!
-</p>
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Categories</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn btn-outline-primary" (click)="newCategory()"><span
+                        class="mdi mdi-plus"></span>
+                    Add Category</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadCategories()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingCategories"></span>
+                    Reload</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Create new question categories to categorize questions in the game. Questions that have the
+                            same category share the same score.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    All Categories
+                </div>
+                <table class="card-table table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-2" scope="col">Identifier</th>
+                            <th class="col-9" scope="col">Name</th>
+                            <th class="col-1" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let category of categories$ | async">
+                            <ng-container *ngIf="!reloadingCategories; else loading">
+                                <td class="col-2"><span class="badge badge-primary p-2"
+                                        [innerText]="category._id"></span>
+                                </td>
+                                <td class="col-9" [innerText]="category.name || 'Unknown Name'"></td>
+                                <td class="col-1">
+                                    <div class="btn-group btn-group-sm d-flex" role="group">
+                                        <button type="button" class="btn btn-info w-100"><span
+                                                class="mdi mdi-pencil"></span>
+                                            Edit</button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                        </tr>
+                        <ng-template #loading>
+                            <tr class="d-flex">
+                                <td class="col-12 center">
+                                    <span class="mdi mdi-reload mdi-spin"></span>
+                                    <span> Loading Categories. Please wait..</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

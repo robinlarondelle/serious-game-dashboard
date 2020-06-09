@@ -55,6 +55,7 @@ export const RouteComponents = [
     GameNewComponent,
     QuestionOverviewComponent,
     QuestionNewComponent,
+    CategoryOverviewComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {
