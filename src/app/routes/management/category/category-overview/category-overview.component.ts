@@ -52,7 +52,7 @@ export class CategoryOverviewComponent {
         const modal: NgbModalRef = this.modalService.open(
             CategoryNewComponent,
             {
-                size: "xl",
+                size: "lg",
                 centered: true,
                 backdrop: "static",
                 keyboard: false,

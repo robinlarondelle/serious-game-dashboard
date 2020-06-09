@@ -15,6 +15,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { GameRequest } from "../routes/management/game/game-new/game-new.component";
+import { CategoryRequest } from "../routes/management/category/category-new/category-new.component";
 
 @Injectable()
 
@@ -95,6 +96,19 @@ export class SeriousGameService {
                 observe: "response",
             })
             .pipe(map((r: HttpResponse<Category[]>) => r.body));
+    }
+
+    /**
+     * Post a new category
+     * @param game: Category object
+     * @returns An observable on the XHR request
+     */
+    public postCategory(category: CategoryRequest): Observable<Category> {
+        return this.http
+            .post(`${SeriousGameService.Url}/category`, category, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Category>) => r.body));
     }
 
     // /**

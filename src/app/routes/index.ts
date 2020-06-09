@@ -7,6 +7,7 @@ import { QuestionNewComponent } from "./management/question/question-new/questio
 import { GameOverviewComponent } from "./management/game/game-overview/game-overview.component";
 import { GameNewComponent } from "./management/game/game-new/game-new.component";
 import { CategoryOverviewComponent } from "./management/category/category-overview/category-overview.component";
+import { CategoryNewComponent } from "./management/category/category-new/category-new.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -56,6 +57,7 @@ export const RouteComponents = [
     QuestionOverviewComponent,
     QuestionNewComponent,
     CategoryOverviewComponent,
+    CategoryNewComponent,
 ];
 
 export const RouteDefinitions = RouterModule.forRoot(appRoutes, {
