@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { QuestionNewComponent } from "./question-new/question-new.component";
+import { QuestionNewComponent } from "../question-new/question-new.component";
 
 @Component({
     selector: "app-question-overview",
