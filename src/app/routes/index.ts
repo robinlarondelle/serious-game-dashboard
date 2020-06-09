@@ -2,10 +2,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { BaseComponent } from "./base/base.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { DepartmentOverviewComponent } from "./management/department/department-overview/department-overview.component";
-import { DepartmentNewComponent } from "./management/department/department-new/department-new.component";
 import { QuestionOverviewComponent } from "./management/question/question-overview/question-overview.component";
 import { QuestionNewComponent } from "./management/question/question-overview/question-new/question-new.component";
+import { GameOverviewComponent } from "./management/game/game-overview/game-overview.component";
+import { GameNewComponent } from "./management/game/game-new/game-new.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -25,8 +25,8 @@ const appRoutes: Routes = [
                 path: "management",
                 children: [
                     {
-                        path: "departments",
-                        component: DepartmentOverviewComponent,
+                        path: "games",
+                        component: GameOverviewComponent,
                     },
                     {
                         path: "questions",
@@ -46,8 +46,8 @@ export const RouteComponents = [
     BaseComponent,
     OverviewComponent,
     NotFoundComponent,
-    DepartmentOverviewComponent,
-    DepartmentNewComponent,
+    GameOverviewComponent,
+    GameNewComponent,
     QuestionOverviewComponent,
     QuestionNewComponent,
 ];

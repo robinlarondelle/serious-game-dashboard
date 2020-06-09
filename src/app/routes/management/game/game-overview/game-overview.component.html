@@ -1,0 +1,79 @@
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Games</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn btn-outline-primary" (click)="newGame()"><span
+                        class="mdi mdi-plus"></span>
+                    Add</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadGames()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingGames"></span>
+                    Reload</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Manage and create new games here that users can play by providing a pin code when starting up
+                            a new game.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    All Games
+                </div>
+                <table class="card-table table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-1" scope="col">Game Pin</th>
+                            <th class="col-5" scope="col">Game Description</th>
+                            <th class="col-1" scope="col">Amount of Questions</th>
+                            <th class="col-1" scope="col">Amount of Plays</th>
+                            <th class="col-2" scope="col">Last updated at</th>
+                            <th class="col-2" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let game of games$ | async">
+                            <ng-container *ngIf="!reloadingGames; else loading">
+                                <td class="col-1"><span class="badge badge-primary p-2" [innerText]="game.pin"></span>
+                                </td>
+                                <td class="col-5" [innerText]="game.description || 'Unknown Description'"></td>
+                                <td class="col-1" [innerText]="game.questions.length"></td>
+                                <td class="col-1" [innerText]="game.amountOfPlays || 'Unknown'"></td>
+                                <td class="col-2" [innerText]="game.updatedAt | amCalendar"></td>
+                                <td class="col-2">
+                                    <div class="btn-group btn-group-sm d-flex" role="group">
+                                        <button type="button" class="btn btn-primary w-100" [routerLink]="['/overview']"
+                                            [queryParams]="{ game: game.pin }"><span class="mdi mdi-magnify"></span>
+                                            Statistics</button>
+                                        <button type="button" class="btn btn-info w-100"><span
+                                                class="mdi mdi-pencil"></span>
+                                            Edit</button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                        </tr>
+                        <ng-template #loading>
+                            <tr class="d-flex">
+                                <td class="col-12 center">
+                                    <span class="mdi mdi-reload mdi-spin"></span>
+                                    <span> Loading Games...</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

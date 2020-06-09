@@ -1,6 +1,6 @@
 <div>
     <div class="modal-header">
-        <h4 class="modal-title">Add new Department</h4>
+        <h4 class="modal-title">Add new Game</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -8,19 +8,22 @@
     <div class="modal-body">
         <div class="row">
             <div class="col">
-                <p>Enter the Department name below and click 'Add' to submit it. It might take some time for the game to
-                    process the new Department.</p>
-                <ngb-alert [type]="'info'" [dismissible]="false">Info: Please ensure that the department name is unique
-                    so it doesn't confuse
-                    the players.</ngb-alert>
+                <p>Enter the Game description below and click 'Add' to submit it. <br>
+                    It might take some time for the game
+                    engine
+                    to process the new Game.</p>
+                <ngb-alert [type]="'info'" [dismissible]="false">Info: Please ensure that the game description is unique
+                    so it doesn't cause confusion.</ngb-alert>
+                <pre>{{game | json}}</pre>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="departmentName">Department Name</label>
+                    <label for="gameDescription">Game Description</label>
                     <input class="form-control" [class.is-invalid]="errorMessage" ngbAutofocus ngDefaultControl
-                        id="departmentName" type="text" placeholder="Legal Team" [(ngModel)]="department.name">
+                        id="gameDescription" type="text" placeholder="Game for Legal Team"
+                        [(ngModel)]="game.description">
                     <div *ngIf="errorMessage" class="invalid-feedback" [innerText]="errorMessage"></div>
                 </div>
             </div>

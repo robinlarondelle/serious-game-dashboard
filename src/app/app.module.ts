@@ -10,9 +10,12 @@ import {
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { VerticalBarChartComponent } from "./shared/charts/vertical-bar-chart/vertical-bar-chart.component";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import { DepartmentNewComponent } from "./routes/management/department/department-new/department-new.component";
 import { QuestionNewComponent } from "./routes/management/question/question-overview/question-new/question-new.component";
 import { FormsModule } from "@angular/forms";
+import { SeriousGameService } from "./clients/serious-game-client.service";
+import { HttpClientModule } from "@angular/common/http";
+import { MomentModule } from "ngx-moment";
+import { GameNewComponent } from "./routes/management/game/game-new/game-new.component";
 
 @NgModule({
     declarations: [
@@ -21,15 +24,17 @@ import { FormsModule } from "@angular/forms";
         VerticalBarChartComponent,
     ],
     imports: [
+        HttpClientModule,
         BrowserModule,
         NgbModule,
         RouteDefinitions,
         NgxChartsModule,
         BrowserAnimationsModule,
         FormsModule,
+        MomentModule,
     ],
-    providers: [],
+    providers: [SeriousGameService],
     bootstrap: [BaseComponent],
-    entryComponents: [DepartmentNewComponent, QuestionNewComponent],
+    entryComponents: [GameNewComponent, QuestionNewComponent],
 })
 export class AppModule {}

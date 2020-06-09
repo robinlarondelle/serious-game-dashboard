@@ -28,19 +28,14 @@
                         <h2>Lorem ipsum..</h2>
                     </div>
                     <div class="card-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit, natus enim obcaecati
-                            nemo,
-                            repudiandae officia dolores, deleniti ad iste eveniet voluptate? Perspiciatis enim nihil
-                            ducimus
-                            nobis dignissimos tenetur. Quas?Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Nisi
-                            odit,
-                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
-                            Perspiciatis enim nihil ducimus
-                            dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-                            odit,
-                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
-                            Perspiciatis enim nihil</p>
+                        <ul>
+                            <li *ngFor="let game of games$ | async">
+                                {{game.pin}}
+                                <ul>
+                                    <li *ngFor="let question of game.questions">{{question.question}}</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

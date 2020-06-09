@@ -1,4 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import {
+    SeriousGameService,
+    Game,
+} from "src/app/clients/serious-game-client.service";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-overview",
@@ -6,8 +11,9 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./overview.component.scss"],
 })
 export class OverviewComponent implements OnInit {
-    constructor() {
-        // Stub
+    public games$: Observable<Game[]>;
+    constructor(private seriousGameService: SeriousGameService) {
+        this.games$ = this.seriousGameService.getAllGames();
     }
     testData = [
         {

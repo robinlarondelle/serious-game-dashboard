@@ -57,3 +57,10 @@ body {
 .bottom-action-bar {
     background-color: #343a40;
 }
+
+.scroll {
+    overflow-y: scroll;
+    &.modal-body {
+        max-height: 70vh;
+    }
+}
