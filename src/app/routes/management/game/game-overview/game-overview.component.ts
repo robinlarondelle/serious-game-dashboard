@@ -6,7 +6,7 @@ import {
     Game,
 } from "src/app/clients/serious-game-client.service";
 import { Observable, BehaviorSubject, combineLatest } from "rxjs";
-import { tap, switchMap, map } from "rxjs/operators";
+import { tap, switchMap, map, shareReplay } from "rxjs/operators";
 
 @Component({
     selector: "app-game-overview",
@@ -42,7 +42,8 @@ export class GameOverviewComponent {
             }),
             tap(() => {
                 this.reloadingGames = false;
-            })
+            }),
+            shareReplay(1)
         );
     }
 
@@ -58,6 +59,5 @@ export class GameOverviewComponent {
 
     public reloadGames(): void {
         this.reload$.next(this.reload$.getValue() + 1);
-        console.log(this.reload$.getValue());
     }
 }
