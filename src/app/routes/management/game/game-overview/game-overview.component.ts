@@ -7,6 +7,7 @@ import {
 } from "src/app/clients/serious-game-client.service";
 import { Observable, BehaviorSubject, combineLatest } from "rxjs";
 import { tap, switchMap, map, shareReplay } from "rxjs/operators";
+import { GameEditComponent } from "../game-edit/game-edit.component";
 
 @Component({
     selector: "app-game-overview",
@@ -55,6 +56,20 @@ export class GameOverviewComponent {
             keyboard: false,
         });
         modal.componentInstance.modal = modal;
+    }
+
+    public editGame(game: Game): void {
+        const editModal: NgbModalRef = this.modalService.open(
+            GameEditComponent,
+            {
+                size: "xl",
+                centered: true,
+                backdrop: "static",
+                keyboard: false,
+            }
+        );
+        editModal.componentInstance.modal = editModal;
+        editModal.componentInstance.game = game;
     }
 
     public reloadGames(): void {

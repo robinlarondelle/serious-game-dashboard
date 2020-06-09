@@ -74,6 +74,19 @@ export class SeriousGameService {
     }
 
     /**
+     * Edit a game
+     * @param game: Game object
+     * @returns An observable on the XHR request
+     */
+    public editGame(game: Game): Observable<Game> {
+        return this.http
+            .put(`${SeriousGameService.Url}/game/${game.pin}`, game, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Game>) => r.body));
+    }
+
+    /**
      * Post a new game
      * @param game: Game object
      * @returns An observable on the XHR request

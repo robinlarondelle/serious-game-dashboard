@@ -56,7 +56,7 @@
                                         <button type="button" class="btn btn-primary w-100" [routerLink]="['/overview']"
                                             [queryParams]="{ game: game.pin }"><span class="mdi mdi-magnify"></span>
                                             Statistics</button>
-                                        <button type="button" class="btn btn-info w-100"><span
+                                        <button type="button" class="btn btn-info w-100" (click)="editGame(game)"><span
                                                 class="mdi mdi-pencil"></span>
                                             Edit</button>
                                     </div>

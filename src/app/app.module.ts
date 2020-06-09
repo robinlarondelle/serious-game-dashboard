@@ -18,6 +18,7 @@ import { MomentModule } from "ngx-moment";
 import { GameNewComponent } from "./routes/management/game/game-new/game-new.component";
 import { CategoryNewComponent } from "./routes/management/category/category-new/category-new.component";
 import { CategoryEditComponent } from "./routes/management/category/category-edit/category-edit.component";
+import { GameEditComponent } from "./routes/management/game/game-edit/game-edit.component";
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { CategoryEditComponent } from "./routes/management/category/category-edi
     bootstrap: [BaseComponent],
     entryComponents: [
         GameNewComponent,
+        GameEditComponent,
         QuestionNewComponent,
         CategoryNewComponent,
         CategoryEditComponent,

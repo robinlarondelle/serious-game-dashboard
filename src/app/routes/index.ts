@@ -9,6 +9,7 @@ import { GameNewComponent } from "./management/game/game-new/game-new.component"
 import { CategoryOverviewComponent } from "./management/category/category-overview/category-overview.component";
 import { CategoryNewComponent } from "./management/category/category-new/category-new.component";
 import { CategoryEditComponent } from "./management/category/category-edit/category-edit.component";
+import { GameEditComponent } from "./management/game/game-edit/game-edit.component";
 export { BaseComponent } from "./base/base.component";
 const appRoutes: Routes = [
     {
@@ -55,6 +56,7 @@ export const RouteComponents = [
     NotFoundComponent,
     GameOverviewComponent,
     GameNewComponent,
+    GameEditComponent,
     QuestionOverviewComponent,
     QuestionNewComponent,
     CategoryOverviewComponent,
