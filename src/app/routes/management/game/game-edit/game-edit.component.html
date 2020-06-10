@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="questionLevel">Level</label>
                                     <input class="form-control" ngbAutofocus ngDefaultControl id="questionLevel"
-                                        type="text" [(ngModel)]="question.level">
+                                        type="text" [(ngModel)]="question.level" readonly>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,8 @@
                                     <div class="form-group">
                                         <label for="answerScore">Score</label>
                                         <input class="form-control" ngbAutofocus ngDefaultControl id="answerScore"
-                                            type="number" placeholder="-100 / 100" [(ngModel)]="answer.deltaScore">
+                                            type="number" min="0" max="100" placeholder="0 / 100"
+                                            [(ngModel)]="answer.deltaScore">
                                     </div>
                                 </div>
                             </div>

@@ -19,6 +19,7 @@ export class GameNewComponent {
 
     // Validation
     public amountOfQuestions = 15;
+    public amountOfQuestionsPerLevel = 5;
     public amountOfAnswersPerQuestion = 4;
     public gameDescriptionLength = 5;
     public minDeltaScore = -100;
@@ -38,7 +39,33 @@ export class GameNewComponent {
 
     public addQuestion(): void {
         if (this.game.questions.length < this.amountOfQuestions) {
-            this.game.questions.push({ answers: [{}, {}, {}, {}] });
+            console.log(this.game.questions.length);
+
+            // Place a question in a level based on its index.
+            if (
+                this.game.questions.length + 1 <=
+                this.amountOfQuestionsPerLevel
+            ) {
+                this.game.questions.push({
+                    level: 1,
+                    answers: [{}, {}, {}, {}],
+                });
+            } else if (
+                this.game.questions.length + 1 >
+                    this.amountOfQuestionsPerLevel &&
+                this.game.questions.length + 1 <=
+                    this.amountOfQuestionsPerLevel * 2
+            ) {
+                this.game.questions.push({
+                    level: 2,
+                    answers: [{}, {}, {}, {}],
+                });
+            } else {
+                this.game.questions.push({
+                    level: 3,
+                    answers: [{}, {}, {}, {}],
+                });
+            }
         }
     }
 
@@ -94,7 +121,6 @@ export class GameNewComponent {
         console.log(this.validateRequest());
         if (this.validateRequest()) {
             this.errorMessage = undefined;
-            console.log(this.game);
 
             this.apiResponse = await this.seriousGameService
                 .postGame(this.game)
