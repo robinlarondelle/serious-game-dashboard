@@ -52,9 +52,11 @@
                                 </td>
                                 <td class="col-6" [innerText]="category.name || 'Onbekende naam'"></td>
                                 <td class="col-1" scope="col"
-                                    [innerText]="(category.updatedAt | amCalendar ) || 'Onbekende datum'"></td>
+                                    [innerText]="category.updatedAt ? (category.updatedAt | amCalendar) : 'Onbekend'">
+                                </td>
                                 <td class="col-1" scope="col"
-                                    [innerText]="(category.createdAt | amCalendar) || 'Onbekende datum'"></td>
+                                    [innerText]="category.createdAt ? (category.createdAt | amCalendar) : 'Onbekend'">
+                                </td>
                                 <td class="col-2">
                                     <div class="btn-group btn-group-sm d-flex" role="group">
                                         <button type="button" class="btn btn-info w-100"
