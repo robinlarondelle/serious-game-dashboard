@@ -100,6 +100,19 @@ export class SeriousGameService {
     }
 
     /**
+     * Delete a game
+     * @param game: Game object
+     * @returns An observable on the XHR request
+     */
+    public deleteGame(game: Game): Observable<Game[]> {
+        return this.http
+            .delete(`${SeriousGameService.Url}/game/${game.pin}`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Game[]>) => r.body));
+    }
+
+    /**
      * Get all categories
      * @returns An observable on the XHR request
      */
@@ -141,6 +154,11 @@ export class SeriousGameService {
             .pipe(map((r: HttpResponse<Category>) => r.body));
     }
 
+    /**
+     * Delete a category
+     * @param category: Category object
+     * @returns An observable on the XHR request
+     */
     public deleteCategory(category: Category): Observable<Category[]> {
         return this.http
             .delete(`${SeriousGameService.Url}/category/${category._id}`, {
@@ -267,4 +285,7 @@ export interface Answer {
 export interface Category {
     _id?: string;
     name?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    ___v?: number;
 }

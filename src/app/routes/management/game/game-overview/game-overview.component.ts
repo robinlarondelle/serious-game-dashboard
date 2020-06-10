@@ -22,6 +22,9 @@ export class GameOverviewComponent {
     // API Data
     public games$: Observable<Game[]>;
 
+    // Utils
+    public alerts: Alert[] = [];
+
     constructor(
         private modalService: NgbModal,
         private seriousGameService: SeriousGameService
@@ -75,4 +78,23 @@ export class GameOverviewComponent {
     public reloadGames(): void {
         this.reload$.next(this.reload$.getValue() + 1);
     }
+
+    public async deleteGame(game: Game): Promise<void> {
+        const result = await this.seriousGameService
+            .deleteGame(game)
+            .toPromise();
+
+        if (result) {
+            this.alerts.push({
+                type: "success",
+                message: "Game succesvol verwijderd.",
+            });
+            this.reloadGames();
+        }
+    }
+}
+
+interface Alert {
+    type: string;
+    message: string;
 }

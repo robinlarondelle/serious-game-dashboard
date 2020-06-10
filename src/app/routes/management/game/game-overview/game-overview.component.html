@@ -23,6 +23,9 @@
                     </div>
                 </div>
             </div>
+            <p *ngFor="let alert of alerts" class="mt-4">
+                <ngb-alert [type]="alert.type" [dismissible]="true">{{ alert.message }}</ngb-alert>
+            </p>
         </div>
     </div>
     <div class="row">
@@ -35,11 +38,11 @@
                     <thead>
                         <tr class="d-flex">
                             <th class="col-1" scope="col">Game Pin</th>
-                            <th class="col-5" scope="col">Beschrijving</th>
+                            <th class="col-4" scope="col">Beschrijving</th>
                             <th class="col-1" scope="col">Hoeveelheid vragen</th>
                             <th class="col-1" scope="col">Aantal gespeelde spellen</th>
                             <th class="col-2" scope="col">Laatst bijgewerkt op</th>
-                            <th class="col-2" scope="col">Acties</th>
+                            <th class="col-3" scope="col">Acties</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,11 +50,11 @@
                             <ng-container *ngIf="!reloadingGames; else loading">
                                 <td class="col-1"><span class="badge badge-primary p-2" [innerText]="game.pin"></span>
                                 </td>
-                                <td class="col-5" [innerText]="game.description || 'Onbekende beschrijving'"></td>
+                                <td class="col-4" [innerText]="game.description || 'Onbekende beschrijving'"></td>
                                 <td class="col-1" [innerText]="game.questions.length"></td>
                                 <td class="col-1" [innerText]="game.amountOfPlays || 'Geen data'"></td>
                                 <td class="col-2" [innerText]="game.updatedAt | amCalendar"></td>
-                                <td class="col-2">
+                                <td class="col-3">
                                     <div class="btn-group btn-group-sm d-flex" role="group">
                                         <button type="button" class="btn btn-primary w-100" [routerLink]="['/overview']"
                                             [queryParams]="{ game: game.pin }"><span class="mdi mdi-magnify"></span>
@@ -59,6 +62,9 @@
                                         <button type="button" class="btn btn-info w-100" (click)="editGame(game)"><span
                                                 class="mdi mdi-pencil"></span>
                                             Bewerk</button>
+                                        <button type="button" class="btn btn-danger w-100"
+                                            (click)="deleteGame(game)"><span class="mdi mdi-delete-outline"></span>
+                                            Verwijder</button>
                                     </div>
                                 </td>
                             </ng-container>

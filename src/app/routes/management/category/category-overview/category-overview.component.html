@@ -38,7 +38,9 @@
                     <thead>
                         <tr class="d-flex">
                             <th class="col-2" scope="col">Identificatie</th>
-                            <th class="col-8" scope="col">Naam</th>
+                            <th class="col-6" scope="col">Naam</th>
+                            <th class="col-1" scope="col">Bewerkt op</th>
+                            <th class="col-1" scope="col">Aangemaakt op</th>
                             <th class="col-2" scope="col">Acties</th>
                         </tr>
                     </thead>
@@ -48,7 +50,11 @@
                                 <td class="col-2"><span class="badge badge-primary p-2"
                                         [innerText]="category._id"></span>
                                 </td>
-                                <td class="col-8" [innerText]="category.name || 'Unknown Name'"></td>
+                                <td class="col-6" [innerText]="category.name || 'Onbekende naam'"></td>
+                                <td class="col-1" scope="col"
+                                    [innerText]="(category.updatedAt | amCalendar ) || 'Onbekende datum'"></td>
+                                <td class="col-1" scope="col"
+                                    [innerText]="(category.createdAt | amCalendar) || 'Onbekende datum'"></td>
                                 <td class="col-2">
                                     <div class="btn-group btn-group-sm d-flex" role="group">
                                         <button type="button" class="btn btn-info w-100"
