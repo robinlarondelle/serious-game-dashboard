@@ -23,6 +23,9 @@
                     </div>
                 </div>
             </div>
+            <p *ngFor="let alert of alerts" class="mt-4">
+                <ngb-alert [type]="alert.type" [dismissible]="true">{{ alert.message }}</ngb-alert>
+            </p>
         </div>
     </div>
     <div class="row">
@@ -51,6 +54,10 @@
                                         <button type="button" class="btn btn-info w-100"
                                             (click)="editCategory(category)"><span class="mdi mdi-pencil"></span>
                                             Bewerk</button>
+                                        <button type="button" class="btn btn-danger w-100"
+                                            (click)="deleteCategory(category)"><span
+                                                class="mdi mdi-delete-outline"></span>
+                                            Verwijder</button>
                                     </div>
                                 </td>
                             </ng-container>

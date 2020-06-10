@@ -23,6 +23,9 @@ export class CategoryOverviewComponent {
     // API Data
     public categories$: Observable<Category[]>;
 
+    // Utils
+    public alerts: Alert[] = [];
+
     constructor(
         private modalService: NgbModal,
         private seriousGameService: SeriousGameService
@@ -81,4 +84,23 @@ export class CategoryOverviewComponent {
         editModal.componentInstance.category = category;
         editModal.componentInstance.modal = editModal;
     }
+
+    public async deleteCategory(category: Category): Promise<void> {
+        // TODO: Implement modal to confirm the deletion
+        const result = await this.seriousGameService
+            .deleteCategory(category)
+            .toPromise();
+        if (result) {
+            this.alerts.push({
+                type: "success",
+                message: "Categorie is succesvol verwijderd.",
+            });
+            this.reloadCategories();
+        }
+    }
+}
+
+interface Alert {
+    type: string;
+    message: string;
 }

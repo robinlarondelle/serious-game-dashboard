@@ -141,6 +141,14 @@ export class SeriousGameService {
             .pipe(map((r: HttpResponse<Category>) => r.body));
     }
 
+    public deleteCategory(category: Category): Observable<Category[]> {
+        return this.http
+            .delete(`${SeriousGameService.Url}/category/${category._id}`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Category[]>) => r.body));
+    }
+
     // /**
     //  * Get all departments from the given Organisation
     //  * @param orgId Organisation ID (the Organisation PIN &#x3D; Organisation ID)
