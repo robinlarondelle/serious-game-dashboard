@@ -1,6 +1,6 @@
 <div>
     <div class="modal-header">
-        <h4 class="modal-title">Edit Category</h4>
+        <h4 class="modal-title">Categorie bewerken</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -8,13 +8,13 @@
     <div class="modal-body scroll">
         <div class="row">
             <div class="col">
-                <p>Enter a category name. Please ensure that the category name is unique.</p>
+                <p>Voer een nieuwe categorienaam in. Zorg ervoor dat de categorienaam uniek is.</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="categoryName">Category Name</label>
+                    <label for="categoryName">Categorienaam</label>
                     <input class="form-control" ngbAutofocus ngDefaultControl id="categoryName" type="text"
                         placeholder="Responsibility" [(ngModel)]="category.name">
                 </div>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary mr-2" (click)="putCategory()">Edit Category</button>
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary mr-2" (click)="putCategory()">Bewerk Categorie</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Sluiten</button>
     </div>
 </div>

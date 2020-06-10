@@ -1,6 +1,6 @@
 <div>
     <div class="modal-header">
-        <h4 class="modal-title">Edit Game</h4>
+        <h4 class="modal-title">Game Bewerken</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -9,9 +9,8 @@
         <div class="row">
             <div class="col">
                 <ngb-alert [type]="'warning'" [dismissible]="false"><span class="plus mdi mdi-alert-outline"></span>
-                    Warning:
-                    Changing a Game when it already has been played will negatively influence the reliability of the
-                    data.</ngb-alert>
+                    Waarschuwing: Het wijzigen van een game terwijl deze al gespeeld is kan zorgen voor onjuiste data.
+                </ngb-alert>
             </div>
         </div>
         <div class="row">
@@ -25,7 +24,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="gameDescription">Game Description</label>
+                                    <label for="gameDescription">Game Beschrijving</label>
                                     <input class="form-control" ngbAutofocus ngDefaultControl id="gameDescription"
                                         type="text" placeholder="Game for Legal Team" [(ngModel)]="game.description">
                                 </div>
@@ -36,19 +35,19 @@
 
                 <div class="card mb-3 ml-5" *ngFor="let question of game.questions; index as iq">
                     <div class="card-header">
-                        <span>Question {{iq + 1}}</span>
+                        <span>Vraag {{iq + 1}}</span>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="questionText">Question Text</label>
-                            <input class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
+                            <label for="questionText">Vraag</label>
+                            <textarea class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
                                 placeholder="What is the answer to life the universe and everthing?"
-                                [(ngModel)]="question.question">
+                                [(ngModel)]="question.question"></textarea>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="category">Question Category</label>
+                                    <label for="category">Vraag Categorie</label>
                                     <select class="form-control" id="category" [(ngModel)]="question.category">
                                         <option *ngFor="let category of categoryResponse$ | async"
                                             [innerText]="category.name" [value]="category._id">
@@ -67,13 +66,13 @@
                         <div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Answers</p>
+                                    <p>Antwoorden</p>
                                 </div>
                             </div>
                             <div class="row mb-2" *ngFor="let answer of question.answers; index as ia">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <label for="answerText">Answer {{ia + 1}}</label>
+                                        <label for="answerText">Antwoord {{ia + 1}}</label>
                                         <input class="form-control" ngbAutofocus ngDefaultControl id="answerText"
                                             type="text" placeholder="42, obviously" [(ngModel)]="answer.answer">
                                     </div>
@@ -97,7 +96,7 @@
 </div>
 <div class="modal-footer">
     <div>
-        <button type="button" class="btn btn-primary mr-2" (click)="editGame()">Edit Game</button>
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary mr-2" (click)="editGame()">Game Bewerken</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Sluiten</button>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div>
     <div class="modal-header">
-        <h4 class="modal-title">Add new Game</h4>
+        <h4 class="modal-title">Nieuwe Game Toevoegen</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -8,12 +8,11 @@
     <div class="modal-body scroll">
         <div class="row">
             <div class="col">
-                <p>Enter the Game description below and click 'Add' to submit it. <br>
-                    It might take some time for the game
-                    engine
-                    to process the new Game.</p>
-                <ngb-alert [type]="'info'" [dismissible]="false">Info: Please ensure that the game description is unique
-                    so it doesn't cause confusion.</ngb-alert>
+                <p>In dit scherm kunt u een nieuwe game toevoegen. Voer de vereiste informatie in en druk op "Spel
+                    Toevoegen" om de game aan te maken. Het kan mogelijk even duren voordat het spel in de game-engine
+                    is ingeladen.</p>
+                <ngb-alert [type]="'info'" [dismissible]="false">Info: Zorg ervoor dat de beschrijving uniek is om
+                    verwarring te voorkomen</ngb-alert>
             </div>
         </div>
         <div class="row">
@@ -27,7 +26,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="gameDescription">Game Description</label>
+                                    <label for="gameDescription">Game Beschrijving</label>
                                     <input class="form-control" [class.is-invalid]="errorMessage" ngbAutofocus
                                         ngDefaultControl id="gameDescription" type="text"
                                         placeholder="Game for Legal Team" [(ngModel)]="game.description">
@@ -40,19 +39,19 @@
 
                 <div class="card mb-3 ml-5" *ngFor="let question of game.questions; index as iq">
                     <div class="card-header">
-                        <span>Question {{iq + 1}}</span>
+                        <span>Vraag {{iq + 1}}</span>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="questionText">Question Text</label>
-                            <input class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
+                            <label for="questionText">Vraag</label>
+                            <textarea class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
                                 placeholder="What is the answer to life the universe and everthing?"
-                                [(ngModel)]="question.question">
+                                [(ngModel)]="question.question"></textarea>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="category">Question Category</label>
+                                    <label for="category">Vraag Categorie</label>
                                     <select class="form-control" id="category" [(ngModel)]="question.category">
                                         <option *ngFor="let category of categoryResponse$ | async"
                                             [innerText]="category.name" [value]="category._id">
@@ -72,13 +71,13 @@
                         <div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Answers</p>
+                                    <p>Antwoorden</p>
                                 </div>
                             </div>
                             <div class="row mb-2" *ngFor="let answer of question.answers; index as ia">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <label for="answerText">Answer {{ia + 1}}</label>
+                                        <label for="answerText">Antwoord {{ia + 1}}</label>
                                         <input class="form-control" ngbAutofocus ngDefaultControl id="answerText"
                                             type="text" placeholder="42, obviously" [(ngModel)]="answer.answer">
                                     </div>
@@ -102,15 +101,14 @@
 </div>
 <div class="modal-footer d-flex justify-content-between">
     <div>
-        <button type="button" class="btn btn-success" (click)="addQuestion()">Add Question
+        <button type="button" class="btn btn-success" (click)="addQuestion()">Vraag toevoegen
             <span class="badge badge-pill badge-light">{{game.questions.length}} /
                 {{amountOfQuestions}}</span></button>
     </div>
     <div>
-        <span *ngIf="validRequest === false" class="badge badge-danger mr-3 p-1">This request is not valid yet. Please
-            fill in
-            all fields.</span>
-        <button type="button" class="btn btn-primary mr-2" (click)="postGame()">Add Game</button>
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <span *ngIf="validRequest === false" class="badge badge-danger mr-3 p-1">Dit verzoek is nog niet valide. Vul
+            alle velden in om verder te gaan</span>
+        <button type="button" class="btn btn-primary mr-2" (click)="postGame()">Game Toevoegen</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Sluiten</button>
     </div>
 </div>
