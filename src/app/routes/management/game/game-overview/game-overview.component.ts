@@ -79,9 +79,10 @@ export class GameOverviewComponent {
         this.reload$.next(this.reload$.getValue() + 1);
     }
 
-    public async deleteGame(game: Game): Promise<void> {
+    public async deleteGame(inputGame: Game): Promise<void> {
+        console.log(inputGame);
         const result = await this.seriousGameService
-            .deleteGame(game)
+            .deleteGame(inputGame)
             .toPromise();
 
         if (result) {

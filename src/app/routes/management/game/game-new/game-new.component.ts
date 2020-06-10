@@ -99,6 +99,10 @@ export class GameNewComponent {
             this.apiResponse = await this.seriousGameService
                 .postGame(this.game)
                 .toPromise();
+
+            if (this.apiResponse) {
+                this.modal.close();
+            }
         } else {
             this.errorMessage = `Game description is not valid. Description must be longer or same length as ${this.gameDescriptionLength}. Found ${this.game.description.length} `;
         }
