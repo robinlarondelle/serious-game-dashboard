@@ -261,7 +261,7 @@ export interface Game {
     _id?: number;
     pin?: number;
     description?: string;
-    amountOfPlays?: number;
+    totalPlays?: number;
     questions?: Question[];
     createdAt?: Date;
     updatedAt?: Date;
