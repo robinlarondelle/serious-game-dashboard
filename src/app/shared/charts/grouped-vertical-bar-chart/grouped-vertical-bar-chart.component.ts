@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-    selector: "app-vertical-bar-chart",
-    templateUrl: "./vertical-bar-chart.component.html",
-    styleUrls: ["./vertical-bar-chart.component.css"],
+    selector: "app-grouped-vertical-bar-chart",
+    templateUrl: "./grouped-vertical-bar-chart.component.html",
+    styleUrls: ["./grouped-vertical-bar-chart.component.css"],
 })
-export class VerticalBarChartComponent {
+export class GroupedVerticalBarChartComponent {
     @Input() data: any[];
     @Input() footer: string;
     @Input() height: number;
@@ -20,8 +19,9 @@ export class VerticalBarChartComponent {
     @Input() showYAxis = true;
     @Input() showXLabel = false;
     @Input() showYLabel = false;
+    constructor() {}
 
-    constructor() {
-        // Stub
+    public formatAsDumbString(input: number): string {
+        return input.toString();
     }
 }

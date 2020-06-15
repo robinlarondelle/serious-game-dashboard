@@ -1,0 +1,139 @@
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Game Statistics Overview</h2>
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center mr-2">
+                <!-- <select class="form-control" (focus)="selectedGame$.next($event.target.value)">
+                    <option *ngFor=" let game of allGames$ | async" [innerText]="game.pin" [value]="game.pin"
+                        [ngModel]="selectedGame$.getValue()" ngDefaultControl>
+                    </option>
+                </select> -->
+
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="plus mdi mdi-gamepad-variant-outline"></span> {{selectedGame$.getValue()}}
+                    </button>
+                    <div class="dropdown-menu" *ngIf="allGames$ | async as allGames">
+                        <ng-container *ngFor="let game of allGames">
+                            <a class="dropdown-item" (click)="selectedGame$.next(game.pin)" [innerText]="game.pin"></a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="align-self-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary"
+                        (click)="reloadTrigger$.next(reloadTrigger$.getValue() + 1)"><span
+                            class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
+                        Reload</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" (click)="reloadInSec$.next(10)">Ververs iedere 10 sec</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(30)">Ververs iedere 30 sec</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(60)">Ververs iedere 1 min</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(120)">Ververs iedere 2 min</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(0)">Niet verversen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-3">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card half-a-col d-flex">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div *ngIf="game$ | async as selectedGame">
+                                <h1 class="cta-card"
+                                    [innerText]="'PIN: ' + selectedGame.pin || 'Geen game geselecteerd'"></h1>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            Game Pin
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card half-a-col d-flex">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div *ngIf="game$ | async as selectedGame">
+                                <h1 class="cta-card"
+                                    [innerText]="selectedGame.lastPlayed ? (selectedGame.lastPlayed | amTimeAgo) : 'Geen data'">
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            Laatst gespeeld
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <app-vertical-bar-chart [data]="testData" [height]="400"></app-vertical-bar-chart>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="margin-bottom: -40px">
+                    <app-grouped-vertical-bar-chart [data]="averageScorePerCategory$ | async" [height]="350"
+                        [noCard]="true" [showXLabel]="false" [showXAxis]="true" [showLegend]="true"
+                        [legendOnBottom]="true">
+                    </app-grouped-vertical-bar-chart>
+                </div>
+                <div class="card-footer">
+                    Gemiddelde score per categorie
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h2>Lorem ipsum..</h2>
+                    </div>
+                    <div class="card-text">
+                        <ul>
+                            <li *ngFor="let game of allGames$ | async">
+                                {{game.pin}}
+                                <ul>
+                                    <li *ngFor="let question of game.questions">{{question.question}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit, natus enim obcaecati
+                            nemo,
+                            repudiandae officia dolores, deleniti ad iste eveniet voluptate? Perspiciatis enim nihil
+                            ducimus
+                            nobis dignissimos tenetur. Quas?Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil ducimus
+                            dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

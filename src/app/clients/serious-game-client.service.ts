@@ -74,6 +74,18 @@ export class SeriousGameService {
     }
 
     /**
+     * Get all game pins
+     * @returns An observable on the XHR request
+     */
+    public getAllGamePins(): Observable<number[]> {
+        return this.http
+            .get(`${SeriousGameService.Url}/game/gamepin`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<number[]>) => r.body));
+    }
+
+    /**
      * Edit a game
      * @param game: Game object
      * @returns An observable on the XHR request
@@ -165,6 +177,20 @@ export class SeriousGameService {
                 observe: "response",
             })
             .pipe(map((r: HttpResponse<Category[]>) => r.body));
+    }
+
+    // STATISTICS
+
+    /**
+     * Get Average Score per category, per game
+     * @returns An observable on the XHR request
+     */
+    public getAvgScorePerCat(): Observable<GroupedBarChart[]> {
+        return this.http
+            .get(`${SeriousGameService.Url}/stats/avgScorePerCat`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<GroupedBarChart[]>) => r.body));
     }
 
     // /**
@@ -265,6 +291,7 @@ export interface Game {
     questions?: Question[];
     createdAt?: Date;
     updatedAt?: Date;
+    lastPlayed?: Date;
     ___v?: number;
 }
 
@@ -288,4 +315,13 @@ export interface Category {
     createdAt?: Date;
     updatedAt?: Date;
     ___v?: number;
+}
+
+export interface GroupedBarChart {
+    name: string;
+    series: {
+        name: string;
+        value: number;
+        extra?: any;
+    };
 }

@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import { BaseComponent } from "./base/base.component";
-import { OverviewComponent } from "./overview/overview.component";
+import { OverviewComponent } from "./dashboard/overview/overview.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { QuestionOverviewComponent } from "./management/question/question-overview/question-overview.component";
 import { QuestionNewComponent } from "./management/question/question-new/question-new.component";
