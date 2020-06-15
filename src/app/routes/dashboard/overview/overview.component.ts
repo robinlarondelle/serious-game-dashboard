@@ -2,12 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import {
     SeriousGameService,
     Game,
-    GroupedBarChart,
+    MultiChartData,
 } from "src/app/clients/serious-game-client.service";
-import { Observable, BehaviorSubject, combineLatest } from "rxjs";
+import { Observable, BehaviorSubject, combineLatest, merge, zip } from "rxjs";
 import { Route } from "@angular/compiler/src/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { tap, switchMap, shareReplay } from "rxjs/operators";
+import { tap, switchMap, shareReplay, mergeAll, map } from "rxjs/operators";
 
 @Component({
     selector: "app-overview",
@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
     public allGames$: Observable<Game[]>;
     public gamePins$: Observable<number[]>;
     public game$: Observable<Game>;
-    public averageScorePerCategory$: Observable<GroupedBarChart[]>;
+    public averageScorePerCategory$: Observable<MultiChartData[]>;
 
     // User input
     public reloadInSec$: BehaviorSubject<number>;
@@ -99,7 +99,16 @@ export class OverviewComponent implements OnInit {
             this.reloadTrigger$,
         ]).pipe(
             switchMap(([selectedGame, reloadInSec, reloadTrigger]) => {
-                return this.seriousGameService.getAvgScorePerCat();
+                return zip(
+                    this.seriousGameService.getAvgScorePerCat(),
+                    this.seriousGameService.getAvgPlayer()
+                ).pipe(
+                    map((res) => {
+                        const result = [].concat(...res);
+                        console.log(result);
+                        return result;
+                    })
+                );
             }),
             shareReplay(1)
         );

@@ -185,12 +185,24 @@ export class SeriousGameService {
      * Get Average Score per category, per game
      * @returns An observable on the XHR request
      */
-    public getAvgScorePerCat(): Observable<GroupedBarChart[]> {
+    public getAvgScorePerCat(): Observable<MultiChartData[]> {
         return this.http
             .get(`${SeriousGameService.Url}/stats/avgScorePerCat`, {
                 observe: "response",
             })
-            .pipe(map((r: HttpResponse<GroupedBarChart[]>) => r.body));
+            .pipe(map((r: HttpResponse<MultiChartData[]>) => r.body));
+    }
+
+    /**
+     * Get Average Score for players, for all games
+     * @returns An observable on the XHR request
+     */
+    public getAvgPlayer(): Observable<MultiChartData[]> {
+        return this.http
+            .get(`${SeriousGameService.Url}/stats/avgPlayer`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<MultiChartData[]>) => r.body));
     }
 
     // /**
@@ -317,7 +329,7 @@ export interface Category {
     ___v?: number;
 }
 
-export interface GroupedBarChart {
+export interface MultiChartData {
     name: string;
     series: {
         name: string;
