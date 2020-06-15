@@ -12,7 +12,8 @@
 
                 <div class="dropdown">
                     <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="plus mdi mdi-gamepad-variant-outline"></span> {{selectedGame$.getValue()}}
+                        <span class="plus mdi mdi-gamepad-variant-outline"></span>
+                        {{selectedGame$.getValue() || 'Geen games gevonden'}}
                     </button>
                     <div class="dropdown-menu" *ngIf="allGames$ | async as allGames">
                         <ng-container *ngFor="let game of allGames">

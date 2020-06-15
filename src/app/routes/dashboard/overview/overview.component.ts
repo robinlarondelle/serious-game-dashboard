@@ -63,8 +63,6 @@ export class OverviewComponent implements OnInit {
                 });
 
                 if (reloadInSec && !this.timerIsRunning && reloadInSec != 0) {
-                    console.log("Biem");
-
                     this.startTimer();
                 }
             }),
