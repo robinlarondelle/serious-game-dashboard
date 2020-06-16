@@ -108,7 +108,8 @@
     <div class="row mb-4">
         <div class="col-8">
             <div class="card">
-                <app-line-chart [data]="playsPerDay$ | async" [height]="300" [showXAxis]="true"></app-line-chart>
+                <app-line-chart [data]="playsPerDay$ | async" [height]="300" [showXAxis]="true" [noCard]="true">
+                </app-line-chart>
                 <div class="card-footer">
                     Aantal gespeelde spellen per dag
                 </div>
