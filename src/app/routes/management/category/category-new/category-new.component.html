@@ -9,6 +9,9 @@
         <div class="row">
             <div class="col">
                 <p>Voeg een nieuwe categorie toe. Let erop dat de naam van de categorie uniek is.</p>
+                <p *ngFor="let alert of alerts" class="mt-4">
+                    <ngb-alert [type]="alert.type">{{ alert.message }}</ngb-alert>
+                </p>
             </div>
         </div>
         <div class="row">

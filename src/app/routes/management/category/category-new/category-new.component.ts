@@ -10,6 +10,7 @@ import { SeriousGameService } from "src/app/clients/serious-game-client.service"
 export class CategoryNewComponent {
     @Input() modal: NgbModalRef;
     public category: CategoryRequest;
+    public alerts: Alert[] = [];
 
     // Validity
     public minCategoryName = 5;
@@ -20,6 +21,7 @@ export class CategoryNewComponent {
 
     public async postCategory(): Promise<void> {
         // Check if categoryName is valid
+        this.alerts = [];
         this.category.name.trim();
         if (this.category.name.length >= this.minCategoryName) {
             const result = await this.seriousGameService
@@ -29,10 +31,20 @@ export class CategoryNewComponent {
             if (result) {
                 this.modal.close();
             }
+        } else {
+            this.alerts.push({
+                type: "danger",
+                message: `Categorienaam moet minimaal ${this.minCategoryName} zijn. Gevonden: ${this.category.name.length}`,
+            });
         }
     }
 }
 
 export interface CategoryRequest {
     name?: string;
+}
+
+interface Alert {
+    type: string;
+    message: string;
 }
