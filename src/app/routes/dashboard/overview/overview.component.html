@@ -1,0 +1,157 @@
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Game Statistics Overview</h2>
+        <div class="d-flex justify-content-between">
+            <div class="align-self-center mr-2">
+                <!-- <select class="form-control" (focus)="selectedGame$.next($event.target.value)">
+                    <option *ngFor=" let game of allGames$ | async" [innerText]="game.pin" [value]="game.pin"
+                        [ngModel]="selectedGame$.getValue()" ngDefaultControl>
+                    </option>
+                </select> -->
+
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="plus mdi mdi-gamepad-variant-outline"></span>
+                        {{selectedGame$.getValue() || 'Geen games gevonden'}}
+                    </button>
+                    <div class="dropdown-menu" *ngIf="allGames$ | async as allGames">
+                        <ng-container *ngFor="let game of allGames">
+                            <a class="dropdown-item" (click)="selectedGame$.next(game.pin)" [innerText]="game.pin"></a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="align-self-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary"
+                        (click)="reloadTrigger$.next(reloadTrigger$.getValue() + 1)"><span *ngIf="timerIsRunning"
+                            class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
+                        Reload</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" (click)="reloadInSec$.next(10)">Ververs iedere 10 sec</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(30)">Ververs iedere 30 sec</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(60)">Ververs iedere 1 min</a>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(120)">Ververs iedere 2 min</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="reloadInSec$.next(0)">Niet verversen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-lg-3">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card half-a-col d-flex">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div *ngIf="game$ | async as selectedGame">
+                                <h1 class="cta-card"
+                                    [innerText]="'PIN: ' + selectedGame.pin || 'Geen game geselecteerd'"></h1>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            Game Pin
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card half-a-col d-flex">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div *ngIf="game$ | async as selectedGame">
+                                <h1 class="cta-card"
+                                    [innerText]="selectedGame.lastPlayed ? (selectedGame.lastPlayed | amTimeAgo) : 'Geen data'">
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            Laatst gespeeld
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg mb-4">
+            <div class="card">
+                <div class="card-body" style="margin-bottom: -40px">
+                    <app-polar-chart [data]="averageScorePerCategory$ | async" [height]="350" [noCard]="true"
+                        [showXLabel]="false" [showYAxis]="false" [showXAxis]="true" [showLegend]="true"
+                        [legendOnBottom]="true" [animations]="false">
+                    </app-polar-chart>
+                </div>
+                <div class="card-footer">
+                    Competenties van de deelnemers, gemiddelde van spel en per game
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="margin-bottom: -40px">
+                    <app-pie-chart [data]="categoryDist$ | async" [height]="350" [noCard]="true">
+                    </app-pie-chart>
+                </div>
+                <div class="card-footer">
+                    Verdeling categorieën
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-8">
+            <div class="card">
+                <app-line-chart [data]="playsPerDay$ | async" [height]="450" [showXAxis]="true" [noCard]="true">
+                </app-line-chart>
+                <div class="card-footer">
+                    Aantal gespeelde spellen per dag
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card">
+                        <div *ngIf="bestPlayer$ | async as bestPlayer" class="half-a-col">
+                            <div class="card-body border-bottom" style="padding-bottom: 10px;">
+                                <h5 class="card-title">Speler <span class="badge badge-success"
+                                        [innerText]="bestPlayer._id.substr(bestPlayer._id.length - 8)"></span></h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li *ngFor="let score of bestPlayer.scores" class="list-group-item"
+                                    [innerText]="score.category + ': ' + score.score"></li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            Speler met de hoogste score
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card">
+                        <div *ngIf="worstPlayer$ | async as worstPlayer" class="half-a-col">
+                            <div class="card-body border-bottom" style="padding-bottom: 10px;">
+                                <h5 class="card-title">Speler <span class="badge badge-danger"
+                                        [innerText]="worstPlayer._id.substr(worstPlayer._id.length - 8)"></span></h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li *ngFor="let score of worstPlayer.scores" class="list-group-item"
+                                    [innerText]="score.category + ': ' + score.score"></li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            Speler met de laagste score
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

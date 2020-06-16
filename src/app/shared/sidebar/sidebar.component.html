@@ -4,30 +4,43 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/app/overview" routerLinkActive="active">
                     <span class="mdi mdi-home"></span>
-                    Overview
+                    Overzicht
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" routerLink="/app/levels" routerLinkActive="active">
                     <span class="mdi mdi-chart-areaspline"></span>
                     Per Level
                 </a>
-            </li>
+            </li> -->
         </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Management</span>
-            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new division">
+            <span>Beheer</span>
+            <a class="d-flex align-items-center text-muted" routerLink="/app/management/games"
+                aria-label="Add a new game">
                 <span class="plus mdi mdi-plus-circle"></span>
             </a>
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span class="plus mdi mdi-account-group"></span>
-                    Divisions
+                <a class="nav-link" routerLink="/app/management/games" routerLinkActive="active">
+                    <span class="plus mdi mdi-gamepad-variant-outline"></span>
+                    Games
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/app/management/categories" routerLinkActive="active">
+                    <span class="plus mdi mdi-shape"></span>
+                    Categorieën
+                </a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="/app/management/questions" routerLinkActive="active">
+                    <span class="plus mdi mdi-help-box"></span>
+                    Vragen
+                </a>
+            </li> -->
         </ul>
     </div>
 </nav>

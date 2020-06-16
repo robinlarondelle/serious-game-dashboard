@@ -1,0 +1,103 @@
+<div>
+    <div class="modal-header">
+        <h4 class="modal-title">Game Bewerken</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close('Close click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll">
+        <div class="row">
+            <div class="col">
+                <ngb-alert [type]="'warning'" [dismissible]="false"><span class="plus mdi mdi-alert-outline"></span>
+                    Waarschuwing: Het wijzigen van een game terwijl deze al gespeeld is kan zorgen voor onjuiste data.
+                </ngb-alert>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <div class="game card mb-3">
+                    <div class="card-header">
+                        <span>Game Details</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="gameDescription">Game Beschrijving</label>
+                                    <input class="form-control" ngbAutofocus ngDefaultControl id="gameDescription"
+                                        type="text" placeholder="Game for Legal Team" [(ngModel)]="game.description">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3 ml-5" *ngFor="let question of game.questions; index as iq">
+                    <div class="card-header">
+                        <span>Vraag {{iq + 1}}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="questionText">Vraag</label>
+                            <textarea class="form-control" ngbAutofocus ngDefaultControl id="questionText" type="text"
+                                placeholder="What is the answer to life the universe and everthing?"
+                                [(ngModel)]="question.question"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="category">Vraag Categorie</label>
+                                    <select class="form-control" id="category" [(ngModel)]="question.category">
+                                        <option *ngFor="let category of categoryResponse$ | async"
+                                            [innerText]="category.name" [value]="category._id">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="questionLevel">Level</label>
+                                    <input class="form-control" ngbAutofocus ngDefaultControl id="questionLevel"
+                                        type="text" [(ngModel)]="question.level" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Antwoorden</p>
+                                </div>
+                            </div>
+                            <div class="row mb-2" *ngFor="let answer of question.answers; index as ia">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <label for="answerText">Antwoord {{ia + 1}}</label>
+                                        <input class="form-control" ngbAutofocus ngDefaultControl id="answerText"
+                                            type="text" placeholder="42, obviously" [(ngModel)]="answer.answer">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="answerScore">Score</label>
+                                        <input class="form-control" ngbAutofocus ngDefaultControl id="answerScore"
+                                            type="number" min="0" max="100" placeholder="0 / 100"
+                                            [(ngModel)]="answer.deltaScore">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div>
+        <button type="button" class="btn btn-primary mr-2" (click)="editGame()">Game Bewerken</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Sluiten</button>
+    </div>
+</div>

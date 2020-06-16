@@ -1,0 +1,86 @@
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Categorieën</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn btn-outline-primary" (click)="newCategory()"><span
+                        class="mdi mdi-plus"></span>
+                    Nieuwe Categorie</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadCategories()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingCategories"></span>
+                    Herladen</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Voeg categorieën voor vragen toe om de vragen in het spel te kunnen categorizeren. Vragen met
+                            dezelfde categorie delen dezelfde score.</p>
+                    </div>
+                </div>
+            </div>
+            <p *ngFor="let alert of alerts" class="mt-4">
+                <ngb-alert [type]="alert.type" [dismissible]="true">{{ alert.message }}</ngb-alert>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Alle Categorieën
+                </div>
+                <table class="card-table table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-2" scope="col">Identificatie</th>
+                            <th class="col-6" scope="col">Naam</th>
+                            <th class="col-1" scope="col">Bewerkt op</th>
+                            <th class="col-1" scope="col">Aangemaakt op</th>
+                            <th class="col-2" scope="col">Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let category of categories$ | async">
+                            <ng-container *ngIf="!reloadingCategories; else loading">
+                                <td class="col-2"><span class="badge badge-primary p-2"
+                                        [innerText]="category._id"></span>
+                                </td>
+                                <td class="col-6" [innerText]="category.name || 'Onbekende naam'"></td>
+                                <td class="col-1" scope="col"
+                                    [innerText]="category.updatedAt ? (category.updatedAt | amCalendar) : 'Onbekend'">
+                                </td>
+                                <td class="col-1" scope="col"
+                                    [innerText]="category.createdAt ? (category.createdAt | amCalendar) : 'Onbekend'">
+                                </td>
+                                <td class="col-2">
+                                    <div class="btn-group btn-group-sm d-flex" role="group">
+                                        <button type="button" class="btn btn-info w-100"
+                                            (click)="editCategory(category)"><span class="mdi mdi-pencil"></span>
+                                            Bewerk</button>
+                                        <button type="button" class="btn btn-danger w-100"
+                                            (click)="deleteCategory(category)"><span
+                                                class="mdi mdi-delete-outline"></span>
+                                            Verwijder</button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                        </tr>
+                        <ng-template #loading>
+                            <tr class="d-flex">
+                                <td class="col-12 center">
+                                    <span class="mdi mdi-reload mdi-spin"></span>
+                                    <span> Bezig met laden.. Een moment geduld aub.</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

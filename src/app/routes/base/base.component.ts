@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
     selector: "app-base",
     templateUrl: "./base.component.html",
-    styleUrls: ["./base.component.css"],
+    styleUrls: ["./base.component.scss"],
 })
-export class BaseComponent implements OnInit {
+export class BaseComponent {
     public readonly urlParts = window.location.href;
 
-    constructor() {}
-
-    ngOnInit() {}
+    constructor() {
+        // Stub
+    }
 }

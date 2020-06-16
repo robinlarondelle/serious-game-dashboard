@@ -1,0 +1,9 @@
+<div [class.card]="!noCard" [class.p-3]="!noCard" [style.height.px]="height">
+    <div class="chart-wrapper" [style.height.px]="legendOnBottom? height - 90 : height - 20">
+        <ngx-charts-bar-vertical [results]="data" [legend]="showLegend"
+            [legendPosition]="legendOnBottom ? 'below' : 'right'" [showGridLines]="gridLines" [xAxisLabel]="xAxis"
+            [yAxisLabel]="yAxis" [yAxis]="showYAxis" [xAxis]="showXAxis" [showXAxisLabel]="showXLabel"
+            [showYAxisLabel]="showYLabel">
+        </ngx-charts-bar-vertical>
+    </div>
+</div>

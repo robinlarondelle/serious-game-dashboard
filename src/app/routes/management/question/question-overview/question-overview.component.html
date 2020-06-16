@@ -1,0 +1,119 @@
+<div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Questions</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn btn-outline-primary" (click)="newQuestion()"><span
+                        class="mdi mdi-plus"></span>
+                    Add Question</button>
+                <button type="button" class="btn btn btn-outline-secondary" (click)="reloadQuestions()"><span
+                        class="mdi mdi-reload" [class.mdi-spin]="reloadingQuestions"></span>
+                    Reload</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit, natus enim obcaecati
+                            nemo,
+                            repudiandae officia dolores, deleniti ad iste eveniet voluptate? Perspiciatis enim nihil
+                            ducimus
+                            nobis dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil ducimus
+                            dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+                            odit,
+                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
+                            Perspiciatis enim nihil</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Active Questions
+                </div>
+                <table class="card-table table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-1" scope="col">Position</th>
+                            <th class="col-5" scope="col">Question</th>
+                            <th class="col-2" scope="col">Times answered</th>
+                            <th class="col-2" scope="col">Average score</th>
+                            <th class="col-2" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex">
+                            <td class="col-1">
+                                <span class="badge badge-primary p-2">Position 1</span>
+                            </td>
+                            <td class="col-5">Otto</td>
+                            <td class="col-2">@mdo</td>
+                            <td class="col-2">@mdo</td>
+                            <td class="col-2">
+                                <div class="btn-group btn-group-sm d-flex" role="group">
+                                    <button type="button" class="btn btn-primary w-100"><span
+                                            class="mdi mdi-order-bool-ascending-variant"></span>
+                                        Answers</button>
+                                    <button type="button" class="btn btn-info w-100"><span
+                                            class="mdi mdi-pencil"></span>
+                                        Edit</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Inactive Questions
+                </div>
+                <table class="card-table table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-1" scope="col">Position</th>
+                            <th class="col-5" scope="col">Question</th>
+                            <th class="col-2" scope="col">Times answered</th>
+                            <th class="col-2" scope="col">Average score</th>
+                            <th class="col-2" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex">
+                            <td class="col-1">
+                                <span class="badge badge-danger p-2">Not In Game</span>
+                            </td>
+                            <td class="col-5">Otto</td>
+                            <td class="col-2">@mdo</td>
+                            <td class="col-2">@mdo</td>
+                            <td class="col-2">
+                                <div class="btn-group btn-group-sm d-flex" role="group">
+                                    <button type="button" class="btn btn-primary w-100"><span
+                                            class="mdi mdi-order-bool-ascending-variant"></span>
+                                        Answers</button>
+                                    <button type="button" class="btn btn-info w-100"><span
+                                            class="mdi mdi-pencil"></span>
+                                        Edit</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
