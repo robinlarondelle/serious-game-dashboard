@@ -253,94 +253,31 @@ export class SeriousGameService {
             .pipe(map((r: HttpResponse<Play>) => r.body));
     }
 
-    // /**
-    //  * Get all departments from the given Organisation
-    //  * @param orgId Organisation ID (the Organisation PIN &#x3D; Organisation ID)
-    //  * @returns An observable on the XHR request
-    //  */
-    // public getAllDepartmentsFromOrganisation(
-    //     orgId: number
-    // ): Observable<Department[]> {
-    //     return this.http
-    //         .get(`${SeriousGameService.Url}/organisation/${orgId}/department`, {
-    //             withCredentials: true,
-    //             observe: "response",
-    //         })
-    //         .pipe(map((r: HttpResponse<Department[]>) => r.body));
-    // }
-
-    // /**
-    //  * Gets the top routes per operator.
-    //  * @param operatorMncMcc The operator MNC MCC.
-    //  * @param amount The amount (default 5)
-    //  * @returns An observable on the XHR request
-    //  */
-    // public getTopRoutesPerOperator(data: {
-    //     operatorMncMcc: number;
-    //     amount?: number;
-    // }): Observable<IApiSMSTopRoutes[]> {
-    //     const queryParameters: string[] = [];
-    //     if (
-    //         data &&
-    //         data.operatorMncMcc !== undefined &&
-    //         data.operatorMncMcc !== null
-    //     )
-    //         queryParameters.push(`operatorMncMcc=${data.operatorMncMcc}`);
-    //     if (data && data.amount !== undefined && data.amount !== null)
-    //         queryParameters.push(`amount=${data.amount}`);
-    //     return this.http
-    //         .get(
-    //             `${
-    //                 MessagingPricesService.Url
-    //             }messagingprices/v1.0/sms/routes${MessagingPricesService.query(
-    //                 queryParameters
-    //             )}`,
-    //             { withCredentials: true, observe: "response" }
-    //         )
-    //         .pipe(map((r: HttpResponse<IApiSMSTopRoutes[]>) => r.body));
-    // }
-
-    // /**
-    //  * Gets the top operators per country
-    //  * @param mcc The Country MCC
-    //  * @param amount Amount of operators
-    //  * @returns An observable on the XHR request
-    //  */
-    // public getTopOperatorsPerCountry(data: {
-    //     mcc: number;
-    //     amount?: number;
-    // }): Observable<IApiTopOperatorsPerCountry[]> {
-    //     const queryParameters: string[] = [];
-    //     if (data && data.mcc !== undefined && data.mcc !== null)
-    //         queryParameters.push(`mcc=${data.mcc}`);
-    //     if (data && data.amount !== undefined && data.amount !== null)
-    //         queryParameters.push(`amount=${data.amount}`);
-    //     return this.http
-    //         .get(
-    //             `${
-    //                 MessagingPricesService.Url
-    //             }messagingprices/v1.0/sms/operators${MessagingPricesService.query(
-    //                 queryParameters
-    //             )}`,
-    //             { withCredentials: true, observe: "response" }
-    //         )
-    //         .pipe(
-    //             map((r: HttpResponse<IApiTopOperatorsPerCountry[]>) => r.body)
-    //         );
-    // }
-
-    // /**
-    //  * Drops the Cache
-    //  * @returns An observable on the XHR request
-    //  */
-    // public dropCache(data: {} = {}): Observable<any> {
-    //     return this.http
-    //         .delete(
-    //             `${MessagingPricesService.Url}messagingprices/v1.0/util/cache`,
-    //             { withCredentials: true, observe: "response" }
-    //         )
-    //         .pipe(map((r: HttpResponse<any>) => r.body));
-    // }
+    /**
+     * Get the question category distribution
+     * @param gamePin: Game Pin
+     * @returns An observable on the XHR request
+     */
+    public getPercentageQuestions(
+        gamePin: number
+    ): Observable<MultiChartData[]> {
+        const queryParams: string[] = [];
+        if (gamePin) {
+            queryParams.push(`pin=${gamePin}`);
+        }
+        return this.http
+            .get(
+                `${
+                    SeriousGameService.Url
+                }/stats/percentageQuestions${SeriousGameService.query(
+                    queryParams
+                )}`,
+                {
+                    observe: "response",
+                }
+            )
+            .pipe(map((r: HttpResponse<MultiChartData[]>) => r.body));
+    }
 }
 
 export interface Game {
@@ -382,8 +319,7 @@ export interface MultiChartData {
     series: {
         name: string;
         value: number;
-        extra?: any;
-    };
+    }[];
 }
 
 export interface PlaysPerDay {

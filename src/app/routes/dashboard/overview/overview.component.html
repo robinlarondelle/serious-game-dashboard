@@ -93,13 +93,11 @@
         <div class="col">
             <div class="card">
                 <div class="card-body" style="margin-bottom: -40px">
-                    <app-grouped-vertical-bar-chart [data]="averageScorePerCategory$ | async" [height]="350"
-                        [noCard]="true" [showXLabel]="false" [showXAxis]="true" [showLegend]="true"
-                        [legendOnBottom]="true">
-                    </app-grouped-vertical-bar-chart>
+                    <app-pie-chart [data]="categoryDist$ | async" [height]="350" [noCard]="true">
+                    </app-pie-chart>
                 </div>
                 <div class="card-footer">
-                    Gemiddelde score per categorie
+                    Verdeling categorieën
                 </div>
             </div>
         </div>

@@ -1,0 +1,7 @@
+<div [class.card]="!noCard" [class.p-3]="!noCard" [style.height.px]="height">
+    <div class="chart-wrapper" [style.height.px]="legendOnBottom? height - 90 : height - 20">
+        <ngx-charts-pie-chart [results]="data" [legend]="showLegend"
+            [legendPosition]="legendOnBottom ? 'below' : 'right'" [labels]="showLabels" [maxLabelLength]="18">
+        </ngx-charts-pie-chart>
+    </div>
+</div>

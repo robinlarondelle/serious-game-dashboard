@@ -22,6 +22,7 @@ import { GameEditComponent } from "./routes/management/game/game-edit/game-edit.
 import { GroupedVerticalBarChartComponent } from "./shared/charts/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component";
 import { PolarChartComponent } from "./shared/charts/polar-chart/polar-chart.component";
 import { LineChartComponent } from "./shared/charts/line-chart/line-chart.component";
+import { PieChartComponent } from "./shared/charts/pie-chart/pie-chart.component";
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { LineChartComponent } from "./shared/charts/line-chart/line-chart.compon
         PolarChartComponent,
         GroupedVerticalBarChartComponent,
         LineChartComponent,
+        PieChartComponent,
     ],
     imports: [
         FormsModule,
