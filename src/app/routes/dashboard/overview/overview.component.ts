@@ -20,6 +20,7 @@ export class OverviewComponent implements OnInit {
     public gamePins$: Observable<number[]>;
     public game$: Observable<Game>;
     public averageScorePerCategory$: Observable<MultiChartData[]>;
+    public playsPerDay$: Observable<LineChart[]>;
 
     // User input
     public reloadInSec$: BehaviorSubject<number>;
@@ -126,6 +127,29 @@ export class OverviewComponent implements OnInit {
             shareReplay(1)
         );
 
+        this.playsPerDay$ = combineLatest([
+            this.selectedGame$,
+            this.reloadInSec$,
+            this.reloadTrigger$,
+        ]).pipe(
+            switchMap(([selectedGame, x, y]) => {
+                const resLineChartArray: LineChart[] = [];
+                return this.seriousGameService
+                    .getPlaysPerDay(selectedGame)
+                    .pipe(
+                        map((res) => {
+                            const resLineChart: LineChart = {
+                                name: "Gespeelde spellen",
+                                series: res,
+                            };
+                            resLineChartArray.push(resLineChart);
+                            return resLineChartArray;
+                        })
+                    );
+            }),
+            shareReplay(1)
+        );
+
         this.averageScorePerCategory$ = combineLatest([
             this.selectedGame$,
             this.reloadInSec$,
@@ -179,4 +203,12 @@ export class OverviewComponent implements OnInit {
 export interface Alert {
     type: string;
     message: string;
+}
+
+interface LineChart {
+    name: string;
+    series?: {
+        name: string;
+        value: number;
+    }[];
 }

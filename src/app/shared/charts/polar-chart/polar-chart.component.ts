@@ -20,6 +20,7 @@ export class PolarChartComponent implements OnInit {
     @Input() showYAxis = true;
     @Input() showXLabel = false;
     @Input() showYLabel = false;
+    @Input() animations = true;
     public curve: unknown = shapes.curveLinearClosed;
     constructor() {
         // Foo

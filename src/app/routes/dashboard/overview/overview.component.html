@@ -82,7 +82,7 @@
                 <div class="card-body" style="margin-bottom: -40px">
                     <app-polar-chart [data]="averageScorePerCategory$ | async" [height]="350" [noCard]="true"
                         [showXLabel]="false" [showYAxis]="false" [showXAxis]="true" [showLegend]="true"
-                        [legendOnBottom]="true">
+                        [legendOnBottom]="true" [animations]="false">
                     </app-polar-chart>
                 </div>
                 <div class="card-footer">
@@ -105,10 +105,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-8">
             <div class="card">
-                <app-line-chart [data]="multiTestData" [height]="300" [showXAxis]="true"></app-line-chart>
+                <app-line-chart [data]="playsPerDay$ | async" [height]="300" [showXAxis]="true"></app-line-chart>
                 <div class="card-footer">
                     Aantal gespeelde spellen per dag
                 </div>
@@ -118,19 +118,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit, natus enim obcaecati
-                            nemo,
-                            repudiandae officia dolores, deleniti ad iste eveniet voluptate? Perspiciatis enim nihil
-                            ducimus
-                            nobis dignissimos tenetur. Quas?Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Nisi
-                            odit,
-                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
-                            Perspiciatis enim nihil ducimus
-                            dignissimos tenetur. Quas? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-                            odit,
-                            natus enim obcaecati nemo, repudiandae officia dolores, deleniti ad iste eveniet voluptate?
-                            Perspiciatis enim nihil</p>
+                        <pre>{{playsPerDay$ | async | json}}</pre>
                     </div>
                 </div>
             </div>

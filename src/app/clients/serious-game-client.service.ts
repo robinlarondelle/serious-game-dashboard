@@ -205,6 +205,18 @@ export class SeriousGameService {
             .pipe(map((r: HttpResponse<MultiChartData[]>) => r.body));
     }
 
+    /**
+     * Get Average Score per category, per game
+     * @returns An observable on the XHR request
+     */
+    public getPlaysPerDay(gamePin: number): Observable<PlaysPerDay[]> {
+        return this.http
+            .get(`${SeriousGameService.Url}/stats/${gamePin}/playsPerDay`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<PlaysPerDay[]>) => r.body));
+    }
+
     // /**
     //  * Get all departments from the given Organisation
     //  * @param orgId Organisation ID (the Organisation PIN &#x3D; Organisation ID)
@@ -336,4 +348,9 @@ export interface MultiChartData {
         value: number;
         extra?: any;
     };
+}
+
+export interface PlaysPerDay {
+    name: string;
+    value: number;
 }
