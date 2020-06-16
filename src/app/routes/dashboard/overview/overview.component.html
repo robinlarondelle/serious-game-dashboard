@@ -25,7 +25,7 @@
             <div class="align-self-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary"
-                        (click)="reloadTrigger$.next(reloadTrigger$.getValue() + 1)"><span
+                        (click)="reloadTrigger$.next(reloadTrigger$.getValue() + 1)"><span *ngIf="timerIsRunning"
                             class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;
                         Reload</button>
                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"

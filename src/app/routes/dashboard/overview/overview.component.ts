@@ -87,16 +87,7 @@ export class OverviewComponent implements OnInit {
             this.reloadTrigger$,
         ]).pipe(
             tap(([reloadInSec, reloadTrigger]) => {
-                // Set query params
-                this.router.navigate([], {
-                    relativeTo: this.route,
-                    queryParams: {
-                        autoReload: reloadInSec ? reloadInSec : undefined,
-                    },
-                    replaceUrl: false,
-                    queryParamsHandling: "merge",
-                });
-
+                // Timer starting logic
                 if (reloadInSec && !this.timerIsRunning && reloadInSec != 0) {
                     this.startTimer();
                 }
@@ -116,6 +107,7 @@ export class OverviewComponent implements OnInit {
                 this.router.navigate([], {
                     relativeTo: this.route,
                     queryParams: {
+                        autoReload: reloadInSec != 0 ? reloadInSec : undefined,
                         gamePin: selectedGame != 0 ? selectedGame : undefined,
                     },
                     replaceUrl: false,
@@ -180,15 +172,12 @@ export class OverviewComponent implements OnInit {
 
     public startTimer(): void {
         this.timerIsRunning = true;
-        console.log("Timer started");
 
         this.interval = setInterval(() => {
             if (this.reloadInSec$.getValue() === 0) {
                 this.stopTimer();
             }
             if (this.timeLeft > 0) {
-                console.log(this.timeLeft);
-
                 this.timeLeft--;
             } else {
                 // Time has passed.
