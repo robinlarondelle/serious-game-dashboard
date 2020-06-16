@@ -33,6 +33,39 @@ export class OverviewComponent implements OnInit {
     public reloadTrigger$: BehaviorSubject<number> = new BehaviorSubject(0);
     public alerts: Alert[] = [];
 
+    // Test Data
+    multiTestData = [
+        {
+            name: "Aantal Plays",
+            series: [
+                {
+                    value: 110,
+                    name: "2020-06-10",
+                },
+                {
+                    value: 100,
+                    name: "2020-06-11",
+                },
+                {
+                    value: 20,
+                    name: "2020-06-12",
+                },
+                {
+                    value: 200,
+                    name: "2020-06-13",
+                },
+                {
+                    value: 2,
+                    name: "2020-06-14",
+                },
+                {
+                    value: 340,
+                    name: "2020-06-15",
+                },
+            ],
+        },
+    ];
+
     constructor(
         private seriousGameService: SeriousGameService,
         private router: Router,
@@ -40,7 +73,7 @@ export class OverviewComponent implements OnInit {
     ) {
         // Don't want a subscription in the constructor, so fetch url params only once
         this.reloadInSec$ = new BehaviorSubject<number>(
-            parseInt(this.route.snapshot.queryParamMap.get("autoReload")) || NaN
+            parseInt(this.route.snapshot.queryParamMap.get("autoReload")) || 0
         );
 
         this.selectedGame$ = new BehaviorSubject<number>(
@@ -105,8 +138,7 @@ export class OverviewComponent implements OnInit {
                 ).pipe(
                     map((res) => {
                         const result = [].concat(...res);
-                        console.log(result);
-                        return result;
+                        return result.sort();
                     })
                 );
             }),
@@ -141,10 +173,6 @@ export class OverviewComponent implements OnInit {
     public stopTimer(): void {
         clearInterval(this.interval);
         this.timerIsRunning = false;
-    }
-
-    log(message: any) {
-        console.log(message);
     }
 }
 

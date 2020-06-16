@@ -78,7 +78,17 @@
             </div>
         </div>
         <div class="col">
-            <app-vertical-bar-chart [data]="testData" [height]="400"></app-vertical-bar-chart>
+            <div class="card">
+                <div class="card-body" style="margin-bottom: -40px">
+                    <app-polar-chart [data]="averageScorePerCategory$ | async" [height]="350" [noCard]="true"
+                        [showXLabel]="false" [showYAxis]="false" [showXAxis]="true" [showLegend]="true"
+                        [legendOnBottom]="true">
+                    </app-polar-chart>
+                </div>
+                <div class="card-footer">
+                    Competenties van de deelnemers, gemiddelde van spel en per game
+                </div>
+            </div>
         </div>
         <div class="col">
             <div class="card">
@@ -98,20 +108,9 @@
     <div class="row">
         <div class="col-8">
             <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h2>Lorem ipsum..</h2>
-                    </div>
-                    <div class="card-text">
-                        <ul>
-                            <li *ngFor="let game of allGames$ | async">
-                                {{game.pin}}
-                                <ul>
-                                    <li *ngFor="let question of game.questions">{{question.question}}</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                <app-line-chart [data]="multiTestData" [height]="300" [showXAxis]="true"></app-line-chart>
+                <div class="card-footer">
+                    Aantal gespeelde spellen per dag
                 </div>
             </div>
         </div>

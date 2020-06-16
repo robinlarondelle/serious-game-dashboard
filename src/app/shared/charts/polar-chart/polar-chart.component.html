@@ -1,10 +1,10 @@
 <div [class.card]="!noCard" [class.p-3]="!noCard" [style.height.px]="height">
     <div class="chart-wrapper" [style.height.px]="legendOnBottom? height - 90 : height - 20">
-        <ngx-charts-bar-vertical-2d [results]="data" [legend]="showLegend"
+        <ngx-charts-polar-chart [results]="data" [legend]="showLegend"
             [legendPosition]="legendOnBottom ? 'below' : 'right'" [showGridLines]="gridLines" [xAxisLabel]="xAxis"
             [yAxisLabel]="yAxis" [yAxis]="showYAxis" [xAxis]="showXAxis" [showXAxisLabel]="showXLabel"
-            [noBarWhenZero]="false" [showYAxisLabel]="showYLabel" [xAxisTickFormatting]="formatAsDumbString"
+            [showYAxisLabel]="showYLabel" [curve]="curve" [labelTrimSize]="25" [autoScale]="true"
             [legendTitle]="'Legenda'">
-        </ngx-charts-bar-vertical-2d>
+        </ngx-charts-polar-chart>
     </div>
 </div>

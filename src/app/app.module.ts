@@ -20,13 +20,17 @@ import { CategoryNewComponent } from "./routes/management/category/category-new/
 import { CategoryEditComponent } from "./routes/management/category/category-edit/category-edit.component";
 import { GameEditComponent } from "./routes/management/game/game-edit/game-edit.component";
 import { GroupedVerticalBarChartComponent } from "./shared/charts/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component";
+import { PolarChartComponent } from "./shared/charts/polar-chart/polar-chart.component";
+import { LineChartComponent } from "./shared/charts/line-chart/line-chart.component";
 
 @NgModule({
     declarations: [
         ...RouteComponents,
         SidebarComponent,
         VerticalBarChartComponent,
+        PolarChartComponent,
         GroupedVerticalBarChartComponent,
+        LineChartComponent,
     ],
     imports: [
         FormsModule,

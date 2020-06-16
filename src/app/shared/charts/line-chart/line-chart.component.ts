@@ -1,11 +1,12 @@
-import { Component, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import * as shapes from "d3-shape";
 
 @Component({
-    selector: "app-grouped-vertical-bar-chart",
-    templateUrl: "./grouped-vertical-bar-chart.component.html",
-    styleUrls: ["./grouped-vertical-bar-chart.component.css"],
+    selector: "app-line-chart",
+    templateUrl: "./line-chart.component.html",
+    styleUrls: ["./line-chart.component.css"],
 })
-export class GroupedVerticalBarChartComponent {
+export class LineChartComponent implements OnInit {
     @Input() data: unknown[];
     @Input() footer: string;
     @Input() height: number;
@@ -19,11 +20,10 @@ export class GroupedVerticalBarChartComponent {
     @Input() showYAxis = true;
     @Input() showXLabel = false;
     @Input() showYLabel = false;
+    curve: unknown = shapes.curveCardinal;
     constructor() {
-        // Foo
+        // FOO
     }
 
-    public formatAsDumbString(input: number): string {
-        return input.toString();
-    }
+    ngOnInit() {}
 }
