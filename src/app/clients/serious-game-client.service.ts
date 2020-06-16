@@ -216,6 +216,7 @@ export class SeriousGameService {
 
     /**
      * Get Average Score per category, per game
+     * @param gamePin: Game Pin
      * @returns An observable on the XHR request
      */
     public getPlaysPerDay(gamePin: number): Observable<PlaysPerDay[]> {
@@ -224,6 +225,32 @@ export class SeriousGameService {
                 observe: "response",
             })
             .pipe(map((r: HttpResponse<PlaysPerDay[]>) => r.body));
+    }
+
+    /**
+     * Get Top Play for game pin
+     * @param gamePin: Game Pin
+     * @returns An observable on the XHR request
+     */
+    public getTopPlay(gamePin: number): Observable<Play> {
+        return this.http
+            .get(`${SeriousGameService.Url}/stats/${gamePin}/topPlay`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Play>) => r.body));
+    }
+
+    /**
+     * Get Worst Play for game pin
+     * @param gamePin: Game Pin
+     * @returns An observable on the XHR request
+     */
+    public getWorstPlay(gamePin: number): Observable<Play> {
+        return this.http
+            .get(`${SeriousGameService.Url}/stats/${gamePin}/topPlay`, {
+                observe: "response",
+            })
+            .pipe(map((r: HttpResponse<Play>) => r.body));
     }
 
     // /**
@@ -362,4 +389,14 @@ export interface MultiChartData {
 export interface PlaysPerDay {
     name: string;
     value: number;
+}
+
+export interface Play {
+    _id?: string;
+    pin?: number;
+    scores?: {
+        _id?: string;
+        category?: string;
+        score?: number;
+    }[];
 }
