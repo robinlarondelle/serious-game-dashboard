@@ -13,6 +13,9 @@
                     is ingeladen.</p>
                 <ngb-alert [type]="'info'" [dismissible]="false">Info: Zorg ervoor dat de beschrijving uniek is om
                     verwarring te voorkomen</ngb-alert>
+                <p *ngFor="let alert of alerts" class="mt-4">
+                    <ngb-alert [type]="alert.type">{{ alert.message }}</ngb-alert>
+                </p>
             </div>
         </div>
         <div class="row">
@@ -27,10 +30,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="gameDescription">Game Beschrijving</label>
-                                    <input class="form-control" [class.is-invalid]="errorMessage" ngbAutofocus
-                                        ngDefaultControl id="gameDescription" type="text"
-                                        placeholder="Game for Legal Team" [(ngModel)]="game.description">
-                                    <div *ngIf="errorMessage" class="invalid-feedback" [innerText]="errorMessage"></div>
+                                    <input class="form-control" ngbAutofocus ngDefaultControl id="gameDescription"
+                                        type="text" placeholder="Game for Legal Team" [(ngModel)]="game.description">
                                 </div>
                             </div>
                         </div>
@@ -106,8 +107,6 @@
                 {{amountOfQuestions}}</span></button>
     </div>
     <div>
-        <span *ngIf="validRequest === false" class="badge badge-danger mr-3 p-1">Dit verzoek is nog niet valide. Vul
-            alle velden in om verder te gaan</span>
         <button type="button" class="btn btn-primary mr-2" (click)="postGame()">Game Toevoegen</button>
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Sluiten</button>
     </div>

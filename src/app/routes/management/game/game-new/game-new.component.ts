@@ -15,7 +15,6 @@ import { Observable } from "rxjs";
 export class GameNewComponent {
     @Input() modal: NgbModalRef;
     public game: GameRequest;
-    public errorMessage: string = undefined;
 
     // Validation
     public amountOfQuestions = 15;
@@ -24,8 +23,7 @@ export class GameNewComponent {
     public gameDescriptionLength = 5;
     public minDeltaScore = -100;
     public maxDeltaScore = 100;
-
-    public validRequest: boolean;
+    public alerts: Alert[] = [];
 
     // API Response
     public apiResponse: Game;
@@ -70,58 +68,31 @@ export class GameNewComponent {
     }
 
     private validateRequest(): boolean {
-        // // Check if game contains description
-        // if (this.game.description.length >= this.gameDescriptionLength) {
-        //     // Check if there are enough game questions
-        //     if (this.game.questions.length == this.amountOfQuestions) {
-        //         this.game.questions.forEach((question) => {
-        //             if (
-        //                 question.answers.length ==
-        //                 this.amountOfAnswersPerQuestion
-        //             ) {
-        //                 // Check if category & level exist
-        //                 if (question.category && question.level) {
-        //                     question.answers.forEach((answer) => {
-        //                         // Check if delta scores are okay
-        //                         if (
-        //                             answer.answer &&
-        //                             answer.deltaScore >= this.minDeltaScore &&
-        //                             answer.deltaScore <= this.maxDeltaScore
-        //                         ) {
-        //                             this.validRequest = true;
-        //                             return true;
-        //                         } else {
-        //                             this.validRequest = false;
-        //                             return false;
-        //                         }
-        //                     });
-        //                 } else {
-        //                     this.validRequest = false;
-        //                     return false;
-        //                 }
-        //             } else {
-        //                 this.validRequest = false;
-        //                 return false;
-        //             }
-        //         });
-        //     } else {
-        //         this.validRequest = false;
-        //         return false;
-        //     }
-        // } else {
-        //     this.validRequest = false;
-        //     return false;
-        // }
-
-        return true;
+        this.alerts = [];
+        // Check if game contains description
+        if (this.game.description.length >= this.gameDescriptionLength) {
+            // Check if there are enough game questions
+            if (this.game.questions.length === this.amountOfQuestions) {
+                return true;
+            } else {
+                this.alerts.push({
+                    type: "danger",
+                    message: `Er zijn slechts ${this.game.questions.length} vragen ingevuld, terwijl er minimaal ${this.amountOfQuestions} verplicht zijn.`,
+                });
+                return false;
+            }
+        } else {
+            this.alerts.push({
+                type: "danger",
+                message: "De beschrijving is niet lang genoeg.",
+            });
+            return false;
+        }
     }
 
     public async postGame(): Promise<void> {
         this.game.description = this.game.description.trim();
-        console.log(this.validateRequest());
         if (this.validateRequest()) {
-            this.errorMessage = undefined;
-
             this.apiResponse = await this.seriousGameService
                 .postGame(this.game)
                 .toPromise();
@@ -130,7 +101,11 @@ export class GameNewComponent {
                 this.modal.close();
             }
         } else {
-            this.errorMessage = `Game description is not valid. Description must be longer or same length as ${this.gameDescriptionLength}. Found ${this.game.description.length} `;
+            this.alerts.push({
+                type: "danger",
+                message:
+                    "Er zijn errors opgetreden waardoor u niet verder kan. Controleer uw invoer.",
+            });
         }
     }
 }
@@ -150,4 +125,9 @@ export interface QuestionRequest {
 export interface AnswerRequest {
     answer?: string;
     deltaScore?: number;
+}
+
+interface Alert {
+    type: string;
+    message: string;
 }

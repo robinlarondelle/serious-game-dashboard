@@ -57,8 +57,9 @@
                                     [innerText]="game.updatedAt ? (game.updatedAt | amCalendar) : 'Onbekend'"></td>
                                 <td class="col-3">
                                     <div class="btn-group btn-group-sm d-flex" role="group">
-                                        <button type="button" class="btn btn-primary w-100" [routerLink]="['/overview']"
-                                            [queryParams]="{ game: game.pin }"><span class="mdi mdi-magnify"></span>
+                                        <button type="button" class="btn btn-primary w-100"
+                                            [routerLink]="['/overview', {game: game.pin}]"
+                                            [queryParams]="{ gamePin: game.pin }"><span class="mdi mdi-magnify"></span>
                                             Statistieken</button>
                                         <button type="button" class="btn btn-info w-100" (click)="editGame(game)"><span
                                                 class="mdi mdi-pencil"></span>
