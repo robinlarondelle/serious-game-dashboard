@@ -1,5 +1,10 @@
 .half-a-col {
     height: 188px;
+
+    ul.list-group-flush {
+        height: 121px;
+        overflow-y: scroll;
+    }
 }
 
 .dropdown-item {

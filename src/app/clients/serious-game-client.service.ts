@@ -247,7 +247,7 @@ export class SeriousGameService {
      */
     public getWorstPlay(gamePin: number): Observable<Play> {
         return this.http
-            .get(`${SeriousGameService.Url}/stats/${gamePin}/topPlay`, {
+            .get(`${SeriousGameService.Url}/stats/${gamePin}/minPlay`, {
                 observe: "response",
             })
             .pipe(map((r: HttpResponse<Play>) => r.body));
@@ -395,7 +395,6 @@ export interface Play {
     _id?: string;
     pin?: number;
     scores?: {
-        _id?: string;
         category?: string;
         score?: number;
     }[];

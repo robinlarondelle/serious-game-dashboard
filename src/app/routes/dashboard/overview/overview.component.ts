@@ -3,6 +3,7 @@ import {
     SeriousGameService,
     Game,
     MultiChartData,
+    Play,
 } from "src/app/clients/serious-game-client.service";
 import { Observable, BehaviorSubject, combineLatest, merge, zip } from "rxjs";
 import { Route } from "@angular/compiler/src/core";
@@ -21,6 +22,8 @@ export class OverviewComponent implements OnInit {
     public game$: Observable<Game>;
     public averageScorePerCategory$: Observable<MultiChartData[]>;
     public playsPerDay$: Observable<LineChart[]>;
+    public bestPlayer$: Observable<Play>;
+    public worstPlayer$: Observable<Play>;
 
     // User input
     public reloadInSec$: BehaviorSubject<number>;
@@ -141,6 +144,26 @@ export class OverviewComponent implements OnInit {
                     );
             }),
             shareReplay(1)
+        );
+
+        this.bestPlayer$ = combineLatest([
+            this.selectedGame$,
+            this.reloadInSec$,
+            this.reloadTrigger$,
+        ]).pipe(
+            switchMap(([selectedGame, reloadInSec, reloadTrigger]) => {
+                return this.seriousGameService.getTopPlay(selectedGame);
+            })
+        );
+
+        this.worstPlayer$ = combineLatest([
+            this.selectedGame$,
+            this.reloadInSec$,
+            this.reloadTrigger$,
+        ]).pipe(
+            switchMap(([selectedGame, reloadInSec, reloadTrigger]) => {
+                return this.seriousGameService.getWorstPlay(selectedGame);
+            })
         );
 
         this.averageScorePerCategory$ = combineLatest([
