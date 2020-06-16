@@ -197,11 +197,20 @@ export class SeriousGameService {
      * Get Average Score for players, for all games
      * @returns An observable on the XHR request
      */
-    public getAvgPlayer(): Observable<MultiChartData[]> {
+    public getAvgPlayer(amountOfPlays?: number): Observable<MultiChartData[]> {
+        const queryParams: string[] = [];
+        if (amountOfPlays) {
+            queryParams.push(`limit=${amountOfPlays}`);
+        }
         return this.http
-            .get(`${SeriousGameService.Url}/stats/avgPlayer`, {
-                observe: "response",
-            })
+            .get(
+                `${
+                    SeriousGameService.Url
+                }/stats/avgPlayer${SeriousGameService.query(queryParams)}`,
+                {
+                    observe: "response",
+                }
+            )
             .pipe(map((r: HttpResponse<MultiChartData[]>) => r.body));
     }
 

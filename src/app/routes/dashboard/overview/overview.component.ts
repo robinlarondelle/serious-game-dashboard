@@ -25,6 +25,7 @@ export class OverviewComponent implements OnInit {
     // User input
     public reloadInSec$: BehaviorSubject<number>;
     public selectedGame$: BehaviorSubject<number>;
+    public maxPlaysForAveragePlayerStat$ = new BehaviorSubject<number>(10);
 
     // Utils
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -152,20 +153,23 @@ export class OverviewComponent implements OnInit {
 
         this.averageScorePerCategory$ = combineLatest([
             this.selectedGame$,
+            this.maxPlaysForAveragePlayerStat$,
             this.reloadInSec$,
             this.reloadTrigger$,
         ]).pipe(
-            switchMap(([selectedGame, reloadInSec, reloadTrigger]) => {
-                return zip(
-                    this.seriousGameService.getAvgScorePerCat(),
-                    this.seriousGameService.getAvgPlayer()
-                ).pipe(
-                    map((res) => {
-                        const result = [].concat(...res);
-                        return result.sort();
-                    })
-                );
-            }),
+            switchMap(
+                ([selectedGame, maxPlays, reloadInSec, reloadTrigger]) => {
+                    return zip(
+                        this.seriousGameService.getAvgScorePerCat(),
+                        this.seriousGameService.getAvgPlayer(maxPlays)
+                    ).pipe(
+                        map((res) => {
+                            const result = [].concat(...res);
+                            return result.sort();
+                        })
+                    );
+                }
+            ),
             shareReplay(1)
         );
     }
